@@ -1,16 +1,18 @@
 <template>
 	<div id="app">
 		<Header />
-		<VueTrix v-model="editorContent" placeholder="Enter content" localStorage/>
+		<WYSIWYG />
 	</div>
 </template>
 
 <script>
-import Header from '@/components/Header';
+import Header from '../components/Header.vue';
+import WYSIWYG from '../components/ArticleEdition.vue';
 export default {
 	name: 'app',
 	components: {
-		Header
+		Header,
+		WYSIWYG
 	}
 }
 </script>
