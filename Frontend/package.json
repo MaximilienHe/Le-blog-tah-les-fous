@@ -12,6 +12,7 @@
     "sass-loader": "^13.2.0",
     "trix": "^2.0.1",
     "vue": "^3.2.13",
+    "vue-router": "^4.1.6",
     "vue-trix": "^1.2.0"
   },
   "devDependencies": {

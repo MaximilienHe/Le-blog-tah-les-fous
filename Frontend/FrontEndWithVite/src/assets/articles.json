@@ -1,0 +1,40 @@
+{
+    "articles": [
+        {
+            "id": 1,
+            "title": "Test du nouveau téléphone mtah les fous",
+            "slug": "telephone-tah-fous",
+            "img": "https://droidsoft.fr/wp-content/uploads/2022/11/Xiaomi-12T-Pro-miniature-scaled.jpg",
+            "tags": "\"phone, android\"",
+            "category": "Actualités",
+            "content": "Vraiment un téléphooooooooooone quali quoi...",
+            "author": "spiut",
+            "createdAt": "2022-11-29T11:09:44.000Z",
+            "updatedAt": "2022-11-29T11:09:44.000Z"
+        },
+        {
+            "id": 2,
+            "title": "Test du nouveau téléphone mtah les fous",
+            "slug": "telephone-tah-dazdzadaz",
+            "img": "https://droidsoft.fr/wp-content/uploads/2022/11/Xiaomi-12T-Pro-miniature-scaled.jpg",
+            "tags": "\"phone, android\"",
+            "category": "Actualités",
+            "content": "Vraiment un téléphooooooooooone quali quoi...tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+            "author": "spiut",
+            "createdAt": "2022-11-29T11:10:55.000Z",
+            "updatedAt": "2022-11-29T11:10:55.000Z"
+        },
+        {
+            "id": 3,
+            "title": "Test du nouveau téléphone mtah les fous",
+            "slug": "telephone-tah-fezzefez",
+            "img": "https://droidsoft.fr/wp-content/uploads/2022/11/Xiaomi-12T-Pro-miniature-scaled.jpg",
+            "tags": "\"phone, android\"",
+            "category": "Actualités",
+            "content": "Apple s’installe depuis plusieurs années désormais avec les puces M1 et M2. Utilisant l’architecture ARM, elles permettent d’avoir une très bonne autonomie, et une bonne efficacité énergétique. En l’occurrence, Apple est plutôt seul dans ce cas-là. Les dernières puces Intel ont été décevantes sur ces 2 points. Ainsi, Qualcomm vient avec la même architecture à travers le Snapdragon 8cx Gen 3. Est-ce que la puce est à la hauteur dans ce Lenovo ThinkPad X13s, et peut concurrencer Apple ? Réponse dans ce test.",
+            "author": "spiut",
+            "createdAt": "2022-11-29T11:12:23.000Z",
+            "updatedAt": "2022-11-29T11:12:23.000Z"
+        }
+    ]
+}
