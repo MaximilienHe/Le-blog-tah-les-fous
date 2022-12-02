@@ -1,16 +1,18 @@
 <template>
 	<div id="app">
 		<Header />
-		<Article />
+		<PostDetail />
 	</div>
 </template>
 
 <script>
 import Header from '../components/Header.vue';
+import PostDetail from '../components/PostDetail.vue'
 export default {
 	name: 'app',
 	components: {
-		Header
+		Header,
+		PostDetail
 	}
 }
 </script>
