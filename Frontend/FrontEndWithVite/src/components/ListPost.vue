@@ -94,7 +94,6 @@ export default {
 	align-items: center;
 	width: 100%;
 	max-width: 1980px;
-	margin: 0 10vw;
 
 	.posts {
 		display: grid;
