@@ -93,7 +93,6 @@ export default {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	max-width: 1980px;
 
 	.posts {
 		display: grid;
