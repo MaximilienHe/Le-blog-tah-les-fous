@@ -18,14 +18,16 @@ export default {
 	mounted() {
 		const postStore = usePiniaStore();
 		this.post = postStore.getPost(this.$route.params.id);
+		console.log(this.post);
 	},
 };
 </script>
 
 <template>
 	<h1 v-if="post">{{ post.title }}</h1>
-
-	<p v-if="post">{{ post.body }}</p>
+	<p v-if="post">{{ post.content }}</p>
+	<img v-if="post" :src="post.img" />
+	
 </template>
 
 <style scoped>
