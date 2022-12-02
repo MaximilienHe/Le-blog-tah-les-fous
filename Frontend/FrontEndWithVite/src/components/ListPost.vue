@@ -28,8 +28,8 @@
 			</div>
 		</div> -->
 
-		<div v-for="post in posts">
-			<PostItem :post="post" textButton="Lire l'article" :handleClick="this.readArticle" />
+		<div v-for="post in posts" class="listPost">
+			<PostItem class="item" :post="post" textButton="Lire l'article" :handleClick="this.readArticle" />
 		</div>
 	</section>
 </template>
@@ -80,10 +80,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.item {
+	margin-bottom: 50px;
+}
+.listPost {
+}
 .latest {
 	display: block;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	max-width: 1280px;
+	max-width: 1980px;
 	margin: 0 10vw;
 
 	.posts {

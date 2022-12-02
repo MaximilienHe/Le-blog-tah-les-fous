@@ -137,7 +137,9 @@ export default {
     }
 
     img {
-      width: 450px;
+      width:45%;
+      aspect-ratio: 16/9;
+      object-fit:contain;
     }
 
     h4 {
