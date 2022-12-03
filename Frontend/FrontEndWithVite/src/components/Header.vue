@@ -38,7 +38,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	padding: 20px 50px 0px;
-	margin-bottom: 10vh;
+	margin-bottom: 4vh;
 
 	.left {
 		flex: 1;

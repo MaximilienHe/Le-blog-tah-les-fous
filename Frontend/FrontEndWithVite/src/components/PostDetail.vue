@@ -1,7 +1,6 @@
 <script>
 import { usePiniaStore } from "../stores/postsStore";
 export default {
-<<<<<<< HEAD
   props: ["id", "postItem"],
   // Properties returned fsrom data() become reactive state
   // and will be exposed on `this`.
@@ -19,34 +18,11 @@ export default {
   mounted() {
     const postStore = usePiniaStore();
     this.post = postStore.getPost(this.$route.params.id);
-  },
-=======
-	props: ['id', 'postItem'],
-	// Properties returned fsrom data() become reactive state
-	// and will be exposed on `this`.
-	data() {
-		return {
-			post: undefined,
-		};
-	},
-	// Methods are functions that mutate state and trigger updates.
-	// They can be bound as event listeners in templates.
-	methods: {},
-	// Lifecycle hooks are called at different stages
-	// of a component's lifecycle.
-	// This function will be called when the component is mounted.
-	mounted() {
-		const postStore = usePiniaStore();
-		this.post = postStore.getPost(this.$route.params.id);
-		console.log(this.post);
-	},
->>>>>>> 6e7f0954dd6f8eca97c58abf4499d8b6d6ceca28
+  }
 };
 </script>
 
 <template>
-<<<<<<< HEAD
-
   <body>
     <div class="banner">
       <img src="https://droidsoft.fr/wp-content/uploads/2022/11/Xiaomi-12T-Pro-miniature-scaled.jpg" data-v-cf937a3e />
@@ -78,12 +54,6 @@ export default {
       <div id="gradiant"></div>
     </div>
   </body>
-=======
-	<h1 v-if="post">{{ post.title }}</h1>
-	<p v-if="post">{{ post.content }}</p>
-	<img v-if="post" :src="post.img" />
-	
->>>>>>> 6e7f0954dd6f8eca97c58abf4499d8b6d6ceca28
 </template>
 
 <style scoped>
