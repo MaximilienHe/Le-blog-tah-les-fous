@@ -1,18 +1,17 @@
 <template>
   <form @submit.prevent="submit">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" v-model="title" placeholder="Enter title" />
+      <input type="text" class="form-control" id="title" placeholder="Titre de l'article" />
 
       <label for="author">Author</label>
-      <input type="text" class="form-control" id="author" v-model="author" placeholder="Enter author" />
+      <input type="text" class="form-control" id="author" placeholder="Auteur de l'article" />
 
       <label for="img">Image</label>
-      <input type="text" class="form-control" id="img" v-model="img" placeholder="Enter image" />
+      <input type="text" class="form-control" id="img" placeholder="Miniature de l'article" />
 
       <label for="tags">Tags</label>
-      <input type="text" class="form-control" id="tags" v-model="tags" placeholder="Enter tags" />
+      <input type="text" class="form-control" id="tags" placeholder="Enter tags" />
 
-      <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <QuillEditor toolbar="#my-toolbar" theme="snow">
     <template #toolbar>
@@ -72,11 +71,19 @@ export default {
   components: {
     QuillEditor,
   },
+  mounted() {
+    this.initialize();
+  },
 
   methods: {
+    initialize() {
+      // Instance
+      this.quill = new Quill(this.$refs.editor, this._options)
+    },
     SaveArticle: function (event) {
       // `this` inside methods points to the Vue instance
-      const contentArticleHTML = this.quill.getText();
+      const editor = this.quill.getEditor()
+      const contentArticleHTML = editor.getHTML();
       console.log(contentArticleHTML);
     }
   }
