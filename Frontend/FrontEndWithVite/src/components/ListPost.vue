@@ -1,7 +1,7 @@
 <template>
 	<section class="latest">
 		<h3>Derniers articles</h3>
-		<!-- <div class="posts">
+		<div class="posts">
 			<div class="post">
 				<div class="image" :style="{ backgroundImage: `url('')` }"></div>
 				<h4>Plan Ahead</h4>
@@ -26,7 +26,7 @@
 				<div class="image" :style="{ backgroundImage: `url('')}')` }"></div>
 				<h4>Learn to take a break</h4>
 			</div>
-		</div> -->
+		</div>
 
 		<div v-for="post in posts" class="listPost">
 			<PostItem class="item" :post="post" textButton="Lire l'article" :handleClick="this.readArticle" />
@@ -70,7 +70,7 @@ export default {
 			.then((res) => {
 				this.posts = res.articles;
 
-				posts.setPosts(res);
+				posts.setPosts(res.articles);
 			});
 	},
 }
