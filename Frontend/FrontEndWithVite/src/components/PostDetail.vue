@@ -108,7 +108,7 @@ h1 {
 
 .direction {
   position: absolute;
-  bottom: -174px;
+  bottom: -116px;
   left: 152px;
   color: rgb(255, 255, 255);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
