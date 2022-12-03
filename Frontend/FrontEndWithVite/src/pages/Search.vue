@@ -7,12 +7,10 @@
 
 <script>
 import Header from '../components/Header.vue';
-import PostDetail from '../components/PostDetail.vue'
 export default {
 	name: 'app',
 	components: {
-		Header,
-		PostDetail
+		Header
 	}
 }
 </script>

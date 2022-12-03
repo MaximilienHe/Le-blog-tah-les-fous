@@ -76,7 +76,8 @@ export default {
   methods: {
     SaveArticle: function (event) {
       // `this` inside methods points to the Vue instance
-      const contentArticleHTML = this.quill.getHTML();
+      const contentArticleHTML = this.quill.getText();
+      console.log(contentArticleHTML);
     }
   }
 };
