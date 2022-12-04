@@ -1,15 +1,18 @@
 <template>
 	<div id="app">
 		<Header />
+        <DashboardAdmin />
 	</div>
 </template>
 
 <script>
 import Header from '../components/Header.vue';
+import DashboardAdmin from '../components/DashboardPanel.vue';
 export default {
 	name: 'app',
 	components: {
-		Header
+		Header,
+        DashboardAdmin
 	}
 }
 </script>
