@@ -10,14 +10,15 @@ import Register from './pages/Register.vue';
 
 import Home from './pages/Home.vue'
 import ArticleEditor from './pages/ArticleEditor.vue'
-
+import Dashboard from './pages/Dashboard.vue'
 const routes = [
 	{ path: '/', component: Home, name: 'Home' },
 	{ path: '/articles/:id', component: PostDetail, name: 'Article', props: true },
 	{ path: '/search', component: Search, name: 'Search', props:true },
 	{ path:'/login', component: Login, name: 'Login' },
 	{ path:'/register', component: Register, name: 'Register' },
-	{ path:'/articleEditor', component:ArticleEditor, name: 'ArticleEditor'}
+	{ path:'/articleEditor', component: ArticleEditor, name: 'ArticleEditor'},
+	{ path: '/dashboard', components: Dashboard, name: 'Dashboard'}
 ];
 
 const router = createRouter({

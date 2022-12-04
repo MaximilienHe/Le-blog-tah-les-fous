@@ -69,18 +69,13 @@ export default {
 			.then((res) => res.json())
 			.then((res) => {
 				this.posts = res.data;
-
 				posts.setPosts(res.data);
 			});
 	},
 }
-
-
-
 </script>
 
 <style lang="scss" scoped>
-
 .item {
 	margin-bottom: 50px;
 }
@@ -93,27 +88,23 @@ export default {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-
 	.posts {
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		grid-template-rows: repeat(3, 196px);
 		grid-gap: 30px;
 		margin: 15px;
-
 		.post {
 			display: flex;
 			flex-direction: column;
 			background-color: #FFFFFF;
 			box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.2);
-
 			.image {
 				flex: 1;
 				background-position: center;
 				background-size: cover;
 				background-repeat: no-repeat;
 			}
-
 			h4 {
 				box-sizing: border-box;
 				padding: 3px 15px 0px 15px;
@@ -121,11 +112,9 @@ export default {
 				line-height: 50px;
 				margin: 0px;
 			}
-
 			&.col-2 {
 				grid-column: span 2;
 			}
-
 			&.row-2 {
 				grid-row: span 2;
 			}
