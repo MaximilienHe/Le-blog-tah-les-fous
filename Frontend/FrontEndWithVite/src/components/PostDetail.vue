@@ -43,7 +43,7 @@ export default {
       </div>
     </div>
     <div class="fix">
-      <button><img src="../assets/bookmark.jpg" id="fixedbutton"></button>
+      <button class="favorite"><img src="../assets/bookmark.jpg" id="fixedbutton"></button>
     </div>
 
     <div class="content">
@@ -192,7 +192,6 @@ p {
   width: 50px;
   height: 50px;
   border-radius: 9px;
-  background: #e0e0e0;
   box-shadow: 5px 5px 14px #bebebe,
     -5px -5px 14px #ffffff;
 }
@@ -205,6 +204,24 @@ p {
   gap: 8px;
   bottom: 20px;
   right: 20px;
-  font-family: sans-serif !important
+  background-color: transparent;
+  font-family: sans-serif;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 9px;
+  box-shadow: 5px 5px 14px #bebebe,
+    -5px -5px 14px #ffffff;
+
+}
+
+.favorite {
+  border: 0;
+  background-color: transparent;
+}
+
+.favorite:hover {
+  border: 0;
+  background-color: transparent;
 }
 </style>
