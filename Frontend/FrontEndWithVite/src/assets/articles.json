@@ -1,5 +1,5 @@
 {
-    "articles": [
+    "data": [
         {
             "id": 1,
             "title": "Test du nouveau téléphone mtah les fous",
@@ -8,6 +8,7 @@
             "tags": ["phone", "android", "Xiaomi"],
             "category": "Actualités",
             "content": "Vraiment un téléphooooooooooone quali quoi...zzzzzzzzzzzz blabla blabla blabl aaszdz zd zd qd qzd qzdQZD zdQZD ",
+            "extract": "Ceci est l'extrait de l'article sur ce téléphone. Celui-ci est un peu plus long, et correspond en fait à la meta description d'un article",
             "author": "spiut",
             "createdAt": "2022-11-29T11:09:44.000Z",
             "updatedAt": "2022-11-29T11:09:44.000Z"

@@ -10,9 +10,13 @@
   },
   "dependencies": {
     "@vueup/vue-quill": "^1.0.0",
+    "axios": "^1.2.0",
     "jquery": "^3.6.1",
     "jQuery": "^1.7.4",
     "pinia": "^2.0.23",
+    "quill-image-uploader": "^1.2.3",
+    "require": "^2.4.20",
+    "requirez": "^1.0.1",
     "sass": "^1.56.1",
     "vue": "^3.2.37",
     "vue-router": "4",

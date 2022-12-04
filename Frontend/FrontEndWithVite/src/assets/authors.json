@@ -1,0 +1,7 @@
+{
+    "authors" : [
+        { "name" : "Maximilien", "id": "1" },
+        { "name" : "Farouk", "id": "2" },
+        { "name" : "Eliot", "id": "3" }
+    ]
+}

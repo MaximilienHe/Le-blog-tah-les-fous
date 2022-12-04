@@ -68,9 +68,9 @@ export default {
 		fetch('../src/assets/articles.json')
 			.then((res) => res.json())
 			.then((res) => {
-				this.posts = res.articles;
+				this.posts = res.data;
 
-				posts.setPosts(res.articles);
+				posts.setPosts(res.data);
 			});
 	},
 }
