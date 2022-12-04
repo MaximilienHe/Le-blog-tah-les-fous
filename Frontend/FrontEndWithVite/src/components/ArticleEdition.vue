@@ -15,7 +15,7 @@
   </form>
   <div ref="editor" class="quillEditor"></div>
   <div class="pushArticle">
-    <button v-on:click="SaveArticle">Publier l'article</button>
+    <button class="PushButton" v-on:click="SaveArticle">Publier l'article</button>
     <p id="Errors"></p>
   </div>
 </template>
@@ -161,7 +161,7 @@ form {
   align-items: center;
 }
 
-button {
+.PushButton {
   background-color: #555555;
   /* Black */
   color: white;
