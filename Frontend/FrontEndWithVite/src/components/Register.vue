@@ -14,15 +14,36 @@
             <label for="password">Mot de passe</label>
             <input type="password" placeholder="Mot de passe" id="password">
 
-            <button>Valider</button>
+            <button v-on:click="Register">Valider</button>
             <a href="/login"><p>Cliquez ici pour vous connecter</p></a>
         </form>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    name: 'register-default'
+    name: 'register-default',
+    methods: {
+        Register : function() {
+            var register = {
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value
+            }
+
+            axios.post('/users', {
+                register
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    }
 }
 </script>
 

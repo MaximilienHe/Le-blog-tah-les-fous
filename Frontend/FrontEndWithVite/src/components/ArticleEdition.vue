@@ -1,94 +1,179 @@
 <template>
   <form @submit.prevent="submit">
-      <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" placeholder="Titre de l'article" />
+    <input type="text" class="form-control-LargeInput" id="title" placeholder="Titre de l'article" />
+    <textarea type="text" class="form-control-LargeInput" id="extrait" placeholder="Extrait de l'article" />
 
-      <label for="author">Author</label>
-      <input type="text" class="form-control" id="author" placeholder="Auteur de l'article" />
-
-      <label for="img">Image</label>
-      <input type="text" class="form-control" id="img" placeholder="Miniature de l'article" />
-
-      <label for="tags">Tags</label>
-      <input type="text" class="form-control" id="tags" placeholder="Enter tags" />
-
+    <div class="ArticleInfos">
+      <select id="Category">
+        <option value="" selected disabled hidden>Catégorie de l'article</option>
+      </select>
+      <input type="text" class="form-control-smallInput" id="img" placeholder="Miniature de l'article (URL)" />
+      <input type="text" class="form-control-smallInput" id="slug" placeholder="Slug de l'article" />
+    </div>
+    <input type="text" class="form-control-LargeInput" id="tags"
+      placeholder="Tags de l'article, séparés par un ; (e.g : samsung; xiaomi; apple)" />
   </form>
-  <QuillEditor toolbar="#my-toolbar" theme="snow">
-    <template #toolbar>
-      <div id="my-toolbar">
-        <span class="ql-formats">
-          <select class="ql-font"></select>
-          <select class="ql-size"></select>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-bold"></button>
-          <button class="ql-italic"></button>
-          <button class="ql-underline"></button>
-          <button class="ql-strike"></button>
-        </span>
-        <span class="ql-formats">
-          <select class="ql-color"></select>
-          <select class="ql-background"></select>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-script" value="sub"></button>
-          <button class="ql-script" value="super"></button>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-header" value="1"></button>
-          <button class="ql-header" value="2"></button>
-          <button class="ql-blockquote"></button>
-          <button class="ql-code-block"></button>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-list" value="ordered"></button>
-          <button class="ql-list" value="bullet"></button>
-          <button class="ql-indent" value="-1"></button>
-          <button class="ql-indent" value="+1"></button>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-direction" value="rtl"></button>
-          <select class="ql-align"></select>
-        </span>
-        <span class="ql-formats">
-          <button class="ql-link"></button>
-          <button class="ql-image"></button>
-          <button class="ql-video"></button>
-        </span>
-      </div>
-    </template>
-  </QuillEditor>
-  <button v-on:click="SaveArticle">Publier l'article</button>
+  <div ref="editor" class="quillEditor"></div>
+  <div class="pushArticle">
+    <button v-on:click="SaveArticle">Publier l'article</button>
+    <p id="Errors"></p>
+  </div>
 </template>
 
 <script>
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import axios from 'axios';
+import Quill from "quill";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.bubble.css";
+import "quill/dist/quill.snow.css";
 
 
 export default {
-  name: "app",
-  components: {
-    QuillEditor,
+  props: {
+    modelValue: {
+      type: String,
+      default: "",
+    },
+  },
+  data() {
+    return {
+      editor: null,
+      authors: null,
+      categories: null,
+    };
   },
   mounted() {
-    this.initialize();
+
+    // Get list of categories
+    fetch('../src/assets/categories.json')
+      .then((res) => res.json())
+      .then((res) => {
+        this.categories = res.categories;
+        console.log(this.categories);
+      })
+      .then((res) => {
+        this.categories.forEach((category) => {
+          const option = document.createElement("option");
+          option.value = category.id;
+          option.text = category.name;
+          document.getElementById("Category").appendChild(option);
+        });
+      })
+
+
+
+    var _this = this;
+
+    this.editor = new Quill(this.$refs.editor, {
+      modules: {
+        toolbar: [
+          ['bold', 'italic', 'underline'],
+          [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+          ['link', 'image']
+        ],
+      },
+      //theme: 'bubble',
+      theme: "snow",
+      formats: ["bold", "underline", "header", "italic", "link"],
+      placeholder: "Type something in here!",
+    });
+    this.editor.root.innerHTML = this.modelValue;
   },
 
   methods: {
-    initialize() {
-      // Instance
-      this.quill = new Quill(this.$refs.editor, this._options)
+    // Creattion of JSON Object + POST in DB when button is clicked
+    SaveArticle: function () {
+      var selectCategory = document.getElementById("Category");
+
+      var article = {
+        title: document.getElementById("title").value,
+        extract: document.getElementById("extrait").value,
+        slug: document.getElementById("slug").value,
+        img: document.getElementById("img").value,
+        tags: document.getElementById("tags").value,
+        category: selectCategory.options[selectCategory.selectedIndex].text,
+        content: this.editor.root.innerHTML
+      }
+
+      axios.post('/articles', {
+          article
+        })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     },
-    SaveArticle: function (event) {
-      // `this` inside methods points to the Vue instance
-      const editor = this.quill.getEditor()
-      const contentArticleHTML = editor.getHTML();
-      console.log(contentArticleHTML);
-    }
-  }
+  },
 };
 </script>
-<style>
 
+<style>
+* {
+  font-family: 'Rockwell', serif;
+}
+
+input {
+  border: 0;
+}
+
+textarea {
+  border: 0;
+  resize: vertical;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-control-LargeInput {
+  width: 80%;
+  height: 10%;
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 8px 14px;
+}
+
+.form-control-smallInput {
+  width: 25.7%;
+  height: 10%;
+  font-size: 16px;
+  padding: 8px 14px;
+}
+
+.ArticleInfos {
+  display: flex;
+  width: 81.5%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pushArticle {
+  margin: 10px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: #555555;
+  /* Black */
+  color: white;
+  border-color: #555555;
+  font-size: 20px;
+  padding: 16px;
+}
+
+button:hover {
+  background-color: white;
+  /* Green */
+  color: black;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
 </style>
