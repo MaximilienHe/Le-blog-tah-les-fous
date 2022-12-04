@@ -42,6 +42,10 @@ export default {
         <div v-if="post" class="date">{{ post.createdAt }}</div>
       </div>
     </div>
+    <div class="fix">
+      <button><img src="../assets/bookmark.jpg" id="fixedbutton"></button>
+    </div>
+
     <div class="content">
       <p>
         200 mégapixels, 120 Watts … Ce Xiaomi 12T Pro affiche une fiche technique
@@ -64,7 +68,7 @@ export default {
 </template>
 
 <style scoped>
-.content{
+.content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -182,5 +186,25 @@ p {
   align-items: none;
   border-radius: 20px;
 
+}
+
+#fixedbutton {
+  width: 50px;
+  height: 50px;
+  border-radius: 9px;
+  background: #e0e0e0;
+  box-shadow: 5px 5px 14px #bebebe,
+    -5px -5px 14px #ffffff;
+}
+
+.fix {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  bottom: 20px;
+  right: 20px;
+  font-family: sans-serif !important
 }
 </style>
