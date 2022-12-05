@@ -40,7 +40,7 @@ export default {
       });
 
       // Charge content of article
-
+      document.getElementById("content").innerHTML = this.post.content;
   },
 };
 </script>
@@ -84,6 +84,17 @@ export default {
 </template>
 
 <style scoped>
+
+p {
+  font-size: 24px;
+  width: 1600px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  padding-top: 50px;
+  color: black;
+}
 .Commentaire {
   padding: 0 15vh;
 
@@ -100,7 +111,6 @@ export default {
   align-items: left;
   padding-left: 20vh;
   padding-right: 20vh;
-  color: white;
 }
 
 .banner {
@@ -140,7 +150,7 @@ h1 {
 
 .direction {
   position: absolute;
-  bottom: -5vh;
+  bottom: -2.5vh;
   left: 8.4vw;
   color: rgb(255, 255, 255);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
@@ -150,33 +160,6 @@ h1 {
 html {
   margin: 0;
   padding: 0;
-}
-
-h2 {
-  font-size: 56px;
-  transform: translateX(-5px);
-  font-family: var(--font-display);
-  margin-bottom: 0;
-  color: black;
-}
-
-h3 {
-  font-size: 28px;
-  transform: translateX(-5px);
-  font-family: var(--font-display);
-  margin-bottom: 0;
-  color: black;
-}
-
-p {
-  font-size: 24px;
-  width: 1600 px;
-  height: auto;
-  display: flex;
-  align-items: center;
-  margin: auto;
-  padding-top: 50px;
-  color: black;
 }
 
 #IMGarticle {
@@ -235,23 +218,4 @@ p {
   background-color: transparent;
 }
 
-h2:after {
-  content: "";
-  display: block;
-  height: 8px;
-  background: gray;
-  max-width: 75px;
-  transform: skewX(-21deg) translateY(0px);
-  border-radius: 3px;
-}
-
-h3:after {
-  content: "";
-  display: block;
-  height: 8px;
-  background: gray;
-  max-width: 75px;
-  transform: skewX(-21deg) translateY(0px);
-  border-radius: 3px;
-}
 </style>

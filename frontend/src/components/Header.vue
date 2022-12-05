@@ -38,9 +38,12 @@ export default {
 			.then((res) => {
 				this.categories = res.categories;
 				console.log(this.categories);
+				
+				document.getElementById("categories").innerHTML = "";
 			})
 			.then((res) => {
 				this.categories.forEach((category) => {
+					console.log("category: " + category.name);
 					const linkCat = document.createElement("a");
 					linkCat.href = "/category/" + category.name;
 					const h3Category = document.createElement("h3");

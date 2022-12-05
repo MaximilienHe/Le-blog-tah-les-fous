@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 body {
 	background-color: #F3F3F3;
 	font-family: "Rockwell", serif;

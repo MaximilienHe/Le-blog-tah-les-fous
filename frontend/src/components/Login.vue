@@ -2,11 +2,10 @@
     <div class="login">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-        <form class="login">
             <h3>Se connecter</h3>
 
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" placeholder="Email ou Nom d'utilisateur" id="username">
+            <input type="text" placeholder="Nom d'utilisateur" id="username">
 
             <label for="password">Mot de passe</label>
             <input type="password" placeholder="Mot de passe" id="password">
@@ -15,7 +14,6 @@
             <a href="/register">
                 <p>Cliquez ici pour créer un compte</p>
             </a>
-        </form>
     </div>
 </template>
 
@@ -30,10 +28,8 @@ export default {
                 username: document.getElementById("username").value,
                 password: document.getElementById("password").value
             }
-
-            axios.post('/sessions', {
-                session
-            })
+            
+            axios.post('http://192.168.165.250:3000/sessions', session)
                 .then(function (response) {
                     console.log(response);
                 })
