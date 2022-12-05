@@ -86,8 +86,7 @@ export default {
     SaveArticle: function () {
       var selectCategory = document.getElementById("Category");
 
-      axios.post('http://192.168.165.250:3000/articles',
-        {
+      var article = {
           title: document.getElementById("title").value,
           extract: document.getElementById("extrait").value,
           slug: document.getElementById("slug").value,
@@ -96,7 +95,7 @@ export default {
           category: selectCategory.options[selectCategory.selectedIndex].text,
           content: this.editor.root.innerHTML
         }
-      )
+      axios.post('http://192.168.165.250:3000/articles', article)
         .then(function (response) {
           console.log(response);
         })

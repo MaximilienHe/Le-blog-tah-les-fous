@@ -26,6 +26,7 @@ export default {
   // of a component's lifecycle.
   // This function will be called when the component is mounted.
   mounted() {
+    // Store informations of article
     const postStore = usePiniaStore();
     this.post = postStore.getPost(this.$route.params.id);
     console.log(this.post.id);
@@ -37,6 +38,9 @@ export default {
       .then((res) => {
         this.comments = res.data;
       });
+
+      // Charge content of article
+
   },
 };
 </script>
@@ -61,7 +65,8 @@ export default {
       </button>
     </div>
 
-    <div v-if="post" class="content">{{ post.content }}</div>
+
+    <div class="content" id="content"></div>
 
     <!-- <div id="IMGarticle">
         <img id="articleIMG" src="https://droidsoft.fr/wp-content/uploads/2022/11/Xiaomi-12T-Pro-miniature-scaled.jpg"
