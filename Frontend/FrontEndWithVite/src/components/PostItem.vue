@@ -7,7 +7,7 @@
         <img v-if="post" :src="post.img" />
         <div class="top-right">
           <h2 v-if="post">{{ post.title }}</h2>
-          <p v-if="post" class="extrait">{{ post.content }}</p>
+          <p v-if="post" class="extrait">{{ post.extract }}</p>
           <div class="tag">{{ post.tags[0] }}</div>
           <div class="tag">{{ post.tags[1] }}</div>
           <div class="tag">{{ post.tags[2] }}</div>

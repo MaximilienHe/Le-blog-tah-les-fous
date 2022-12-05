@@ -8,9 +8,7 @@
 			</a>
 		</div>
 
-		<div class="center">
-			<h3>Actualités</h3>
-			<h3>Tests</h3>
+		<div class="center" id="categories">
 		</div>
 
 		<div class="right">
@@ -28,8 +26,33 @@
 
 <script>
 export default {
-	name: 'header-website'
+	name: 'header-website',
+	data() {
+		return {
+			categories: null
+		}
+	},
+	mounted() {
+		fetch('../src/assets/categories.json')
+			.then((res) => res.json())
+			.then((res) => {
+				this.categories = res.categories;
+				console.log(this.categories);
+			})
+			.then((res) => {
+				this.categories.forEach((category) => {
+					const linkCat = document.createElement("a");
+					linkCat.href = "/category/" + category.name;
+					const h3Category = document.createElement("h3");
+					linkCat.appendChild(h3Category);
+					h3Category.innerHTML = category.name;
+					document.getElementById("categories").appendChild(linkCat);
+				});
+			})
+	}
 }
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -62,7 +85,7 @@ header {
 	}
 
 	.center {
-		width: 20vw;
+		width: 30vw;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -115,4 +138,28 @@ header {
 		}
 	}
 }
+
+a {
+	color: transparent;
+	text-decoration: none;
+}
+a:link {
+	text-decoration: none;
+}
+
+
+a:visited {
+	text-decoration: none;
+}
+
+
+a:hover {
+	text-decoration: none;
+}
+
+
+a:active {
+	text-decoration: none;
+}
+
 </style>

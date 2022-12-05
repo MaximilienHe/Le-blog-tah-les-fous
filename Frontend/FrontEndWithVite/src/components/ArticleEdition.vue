@@ -86,25 +86,23 @@ export default {
     SaveArticle: function () {
       var selectCategory = document.getElementById("Category");
 
-      var article = {
-        title: document.getElementById("title").value,
-        extract: document.getElementById("extrait").value,
-        slug: document.getElementById("slug").value,
-        img: document.getElementById("img").value,
-        tags: document.getElementById("tags").value,
-        category: selectCategory.options[selectCategory.selectedIndex].text,
-        content: this.editor.root.innerHTML
-      }
-
-      axios.post('/articles', {
-          article
+      axios.post('http://192.168.165.250:3000/articles',
+        {
+          title: document.getElementById("title").value,
+          extract: document.getElementById("extrait").value,
+          slug: document.getElementById("slug").value,
+          img: document.getElementById("img").value,
+          tags: document.getElementById("tags").value,
+          category: selectCategory.options[selectCategory.selectedIndex].text,
+          content: this.editor.root.innerHTML
+        }
+      )
+        .then(function (response) {
+          console.log(response);
         })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        .catch(function (error) {
+          console.log(error);
+        });
     },
   },
 };

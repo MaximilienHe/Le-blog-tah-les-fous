@@ -9,7 +9,7 @@ export default {
   components: {
     Header,
     CommentItem,
-	AddComment
+    AddComment
   },
   // Properties returned fsrom data() become reactive state
   // and will be exposed on `this`.
@@ -28,9 +28,10 @@ export default {
   mounted() {
     const postStore = usePiniaStore();
     this.post = postStore.getPost(this.$route.params.id);
-    console.log(this.post);
+    console.log(this.post.id);
 
     let URL = "/articles/" + this.post.id + "/comments";
+    console.log(URL);
     fetch(URL)
       .then((res) => res.json())
       .then((res) => {
@@ -67,26 +68,20 @@ export default {
           data-v-cf937a3e />
         <div id="gradiant"></div>
       </div> -->
-    <section class="Commentaire">
+    <!-- <section class="Commentaire">
       <h3 class="CommentTitle">Commentaires</h3>
-	  <AddComment />
-      <div class="listComments">
-        <CommentItem />
-		<CommentItem />
-		<CommentItem />
-		<CommentItem />
-      </div>
+      <AddComment :id="post.id" />
       <div v-for="comment in comments" class="listComments">
-        <CommentItem class="item" :comment="comment" />
+        <CommentItem class="item" :comment="comment" :id="post.id" />
       </div>
-    </section>
+    </section> -->
   </body>
 </template>
 
 <style scoped>
 .Commentaire {
   padding: 0 15vh;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;

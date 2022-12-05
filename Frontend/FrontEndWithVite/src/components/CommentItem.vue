@@ -16,9 +16,6 @@ export default {
   // Methods are functions that mutate state and trigger updates.
   // They can be bound as event listeners in templates.
   methods: {
-    clicked() {
-      this.handleClick(this.post);
-    },
   },
   // Lifecycle hooks are called at different stages
   // of a component's lifecycle.

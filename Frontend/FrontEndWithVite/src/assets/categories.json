@@ -1,8 +1,8 @@
 {
     "categories" : [
-        { "name" : "Actualités", "id": "1" },
-        { "name" : "Test", "id": "2" },
-        { "name" : "Guide", "id": "3" },
-        { "name" : "Dossier", "id": "3" }
+        { "name" : "actualites", "id": "1" },
+        { "name" : "test", "id": "2" },
+        { "name" : "guide", "id": "3" },
+        { "name" : "dossier", "id": "3" }
     ]
 }

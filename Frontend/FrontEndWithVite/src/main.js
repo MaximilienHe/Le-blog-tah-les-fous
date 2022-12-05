@@ -11,8 +11,11 @@ import Register from './pages/Register.vue';
 import Home from './pages/Home.vue'
 import ArticleEditor from './pages/ArticleEditor.vue'
 import Dashboard from './pages/Dashboard.vue'
+import Category from './pages/Category.vue'
+
 const routes = [
 	{ path: '/', component: Home, name: 'Home' },
+	{ path: '/category/:id', component: Category, name: 'Article', props: true },
 	{ path: '/articles/:id', component: PostDetail, name: 'Article', props: true },
 	{ path: '/search', component: Search, name: 'Search', props:true },
 	{ path:'/login', component: Login, name: 'Login' },
