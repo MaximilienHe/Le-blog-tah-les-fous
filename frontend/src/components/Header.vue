@@ -37,13 +37,12 @@ export default {
 			.then((res) => res.json())
 			.then((res) => {
 				this.categories = res.categories;
-				console.log(this.categories);
-				
+
 				document.getElementById("categories").innerHTML = "";
 			})
 			.then((res) => {
 				this.categories.forEach((category) => {
-					console.log("category: " + category.name);
+					// Creation of HTML for categories
 					const linkCat = document.createElement("a");
 					linkCat.href = "/category/" + category.name;
 					const h3Category = document.createElement("h3");
@@ -60,6 +59,7 @@ export default {
 
 <style lang="scss" scoped>
 header {
+	background-color: #F3F3F3;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -146,6 +146,7 @@ a {
 	color: transparent;
 	text-decoration: none;
 }
+
 a:link {
 	text-decoration: none;
 }
@@ -164,5 +165,4 @@ a:hover {
 a:active {
 	text-decoration: none;
 }
-
 </style>

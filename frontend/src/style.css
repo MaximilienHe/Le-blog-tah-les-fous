@@ -1,17 +1,18 @@
-h2 {
-    font-size: 56px;
-    transform: translateX(-5px);
-    font-family: var(--font-display);
-    margin-bottom: 0;
-    color: black;
-  }
-  
-  h3 {
-    font-size: 28px;
-    transform: translateX(-5px);
-    font-family: var(--font-display);
-    margin-bottom: 0;
-    color: black;
-  }
+* {
+  font-family: "Rockwell", serif;}
 
-  
+h2 {
+  font-size: 40px;
+  transform: translateX(-5px);
+  font-family: var(--font-display);
+  margin-bottom: 0;
+  color: black;
+}
+
+h3 {
+  font-size: 28px;
+  transform: translateX(-5px);
+  font-family: var(--font-display);
+  margin-bottom: 0;
+  color: black;
+}

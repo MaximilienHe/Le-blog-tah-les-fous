@@ -3,6 +3,7 @@ import { usePiniaStore } from "../stores/postsStore";
 import Header from "../components/Header.vue";
 import CommentItem from "../components/CommentItem.vue";
 import AddComment from "../components/AddComment.vue";
+import axios from 'axios';
 
 export default {
   props: ["id", "postItem"],
@@ -21,7 +22,22 @@ export default {
   },
   // Methods are functions that mutate state and trigger updates.
   // They can be bound as event listeners in templates.
-  methods: {},
+  methods: {
+    AddFavorite: function () {
+
+      // var favorite = {
+      //   this.post.id
+      // }
+
+      axios.post('http://localhost:3000/', article)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  },
   // Lifecycle hooks are called at different stages
   // of a component's lifecycle.
   // This function will be called when the component is mounted.
@@ -31,16 +47,15 @@ export default {
     this.post = postStore.getPost(this.$route.params.id);
     console.log(this.post.id);
 
-    let URL = "/articles/" + this.post.id + "/comments";
-    console.log(URL);
+    let URL = "http://192.168.165.250:3000/articles/" + this.post.id + "/comments";
     fetch(URL)
       .then((res) => res.json())
       .then((res) => {
         this.comments = res.data;
       });
 
-      // Charge content of article
-      document.getElementById("content").innerHTML = this.post.content;
+    // Charge content of article
+    document.getElementById("content").innerHTML = this.post.content;
   },
 };
 </script>
@@ -56,11 +71,11 @@ export default {
       <h1 v-if="post">{{ post.title }}</h1>
       <div id="infos">
         <div v-if="post" class="author">{{ post.author }}</div>
-        <div v-if="post" class="date">{{ post.createdAt }}</div>
+        <div v-if="post" class="date">{{ post.creation_date }}</div>
       </div>
     </div>
     <div class="fix">
-      <button class="favorite">
+      <button v-on:click="AddFavorite">
         <img src="../assets/bookmark.jpg" id="fixedbutton" />
       </button>
     </div>
@@ -73,18 +88,17 @@ export default {
           data-v-cf937a3e />
         <div id="gradiant"></div>
       </div> -->
-    <!-- <section class="Commentaire">
+    <section class="Commentaire">
       <h3 class="CommentTitle">Commentaires</h3>
-      <AddComment :id="post.id" />
+      <AddComment v-if="post" :id="post.id" />
       <div v-for="comment in comments" class="listComments">
         <CommentItem class="item" :comment="comment" :id="post.id" />
       </div>
-    </section> -->
+    </section>
   </body>
 </template>
 
 <style scoped>
-
 p {
   font-size: 24px;
   width: 1600px;
@@ -95,6 +109,8 @@ p {
   padding-top: 50px;
   color: black;
 }
+
+
 .Commentaire {
   padding: 0 15vh;
 
@@ -150,8 +166,8 @@ h1 {
 
 .direction {
   position: absolute;
-  bottom: -2.5vh;
-  left: 8.4vw;
+  bottom: 4vh;
+  left: 8.3vw;
   color: rgb(255, 255, 255);
   background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
   width: 1600px;
@@ -217,5 +233,4 @@ html {
   border: 0;
   background-color: transparent;
 }
-
 </style>

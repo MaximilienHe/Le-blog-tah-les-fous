@@ -1,7 +1,9 @@
 <template>
-    <div class="register">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <div class="registerContainer">
+        <div class="register">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+                rel="stylesheet">
             <h3>Créer un compte</h3>
 
             <label for="username">Nom d'utilisateur</label>
@@ -17,6 +19,7 @@
             <a href="/login">
                 <p>Cliquez ici pour vous connecter</p>
             </a>
+        </div>
     </div>
 </template>
 
@@ -58,6 +61,17 @@ export default {
 
 body {
     background-color: #080710;
+}
+
+.register {
+    width: 30%;
+}
+
+.registerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
 
 .background {

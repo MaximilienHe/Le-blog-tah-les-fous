@@ -6,7 +6,7 @@
       <div class="left">
         <img v-if="post" :src="post.img" />
         <div class="top-right">
-          <h2 v-if="post">{{ post.title }}</h2>
+          <h3 v-if="post">{{ post.title }}</h3>
           <p v-if="post" class="extrait">{{ post.extract }}</p>
           <div class="tag">{{ post.tags[0] }}</div>
           <div class="tag">{{ post.tags[1] }}</div>
@@ -16,7 +16,7 @@
               <h4>Par</h4>
               <h4 v-if="post" id="AuthorName">{{ post.author }}</h4>
             </div>
-            <h4 v-if="post">{{ post.createdAt }}</h4>
+            <h4 v-if="post">{{ post.creation_date }}</h4>
           </div>
 
           <button type="button" @click="clicked">
@@ -101,7 +101,7 @@ export default {
   margin: 0 auto;
 
   .post {
-    margin:0;
+    margin-top: 2vh;
     width: 100%;
     display: flex;
     background-color: #ffffff;
@@ -109,7 +109,7 @@ export default {
     padding: 20px 20px;
 
     .left {
-      margin:0;
+      margin: 0;
       display: flex;
       flex-direction: space-between;
 
@@ -137,9 +137,9 @@ export default {
     }
 
     img {
-      width:45%;
+      width: 45%;
       aspect-ratio: 16/9;
-      object-fit:contain;
+      object-fit: contain;
     }
 
     h4 {

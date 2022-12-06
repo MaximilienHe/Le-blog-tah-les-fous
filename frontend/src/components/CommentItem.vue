@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <p v-if="comment" class="pseudoU"> {{ comment.author}}</p>
-    <p v-if="comment" class="contenuComment"> {{ comment.content}}</p>
+    <p v-if="comment" class="contenuComment"> {{ comment.content }}</p>
   </div>
 </template>
 

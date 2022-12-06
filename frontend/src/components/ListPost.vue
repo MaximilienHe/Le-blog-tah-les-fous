@@ -65,7 +65,7 @@ export default {
     // This function will be called when the component is mounted.
     mounted() {
         const posts = usePiniaStore();
-        fetch('http://192.168.165.250:3000/articles')
+        fetch('http://localhost:3000/articles')
             .then((res) => res.json())
             .then((res) => {
                 this.posts = res.data;
@@ -76,6 +76,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .item {
     margin-bottom: 50px;
 }

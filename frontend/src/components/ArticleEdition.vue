@@ -87,15 +87,15 @@ export default {
       var selectCategory = document.getElementById("Category");
 
       var article = {
-          title: document.getElementById("title").value,
-          extract: document.getElementById("extrait").value,
-          slug: document.getElementById("slug").value,
-          img: document.getElementById("img").value,
-          tags: document.getElementById("tags").value,
-          category: selectCategory.options[selectCategory.selectedIndex].text,
-          content: this.editor.root.innerHTML
-        }
-      axios.post('http://192.168.165.250:3000/articles', article)
+        title: document.getElementById("title").value,
+        extract: document.getElementById("extrait").value,
+        slug: document.getElementById("slug").value,
+        img: document.getElementById("img").value,
+        tags: document.getElementById("tags").value,
+        category: selectCategory.options[selectCategory.selectedIndex].text,
+        content: this.editor.root.innerHTML,
+      }
+      axios.post('http://localhost:3000/articles', article)
         .then(function (response) {
           console.log(response);
         })
@@ -112,12 +112,7 @@ export default {
   font-family: 'Rockwell', serif;
 }
 
-input {
-  border: 0;
-}
-
 textarea {
-  border: 0;
   resize: vertical;
 }
 

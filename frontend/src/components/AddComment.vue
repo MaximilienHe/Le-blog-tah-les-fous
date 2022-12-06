@@ -1,5 +1,5 @@
 <template>
-  <textarea type="text" class="form-control-LargeInput" id="content" placeholder="Ecrivez votre commentaire ..." />
+  <textarea type="text" class="form-control-LargeInput" id="contentComment" placeholder="Ecrivez votre commentaire ..." />
   <div class="pushArticle">
     <button class="PushButton" v-on:click="SaveComment">Publier le commentaire</button>
     <p id="Errors"></p>
@@ -7,7 +7,7 @@
 </template>
   
 <script>
-import axios from 'axios';
+import axiosInstance from '../axiosImport';
 
 
 export default {
@@ -21,13 +21,12 @@ export default {
     // Creation of JSON Object + POST in DB when button is clicked
     SaveComment: function () {
       var comment = {
-        body: document.getElementById("content").value,
+        id: this.id,
+        content: document.getElementById("contentComment").value,
       }
-
-      let URL = '/articles' + id +'/comments';
-      axios.post(URL, {
-        comment
-      })
+      console.log(comment);
+      let URL = 'http://192.168.165.250:3000/articles/' + this.id + '/comments';
+      axiosInstance.post(URL, comment, { withCredentials: true })
         .then(function (response) {
           console.log(response);
         })

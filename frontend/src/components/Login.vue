@@ -1,7 +1,9 @@
 <template>
-    <div class="login">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <div class="loginContainer">
+        <div class="login">
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+                rel="stylesheet">
             <h3>Se connecter</h3>
 
             <label for="username">Nom d'utilisateur</label>
@@ -14,11 +16,12 @@
             <a href="/register">
                 <p>Cliquez ici pour créer un compte</p>
             </a>
+        </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from '../axiosImport';
 
 export default {
     name: 'login-default',
@@ -28,10 +31,10 @@ export default {
                 username: document.getElementById("username").value,
                 password: document.getElementById("password").value
             }
-            
-            axios.post('http://192.168.165.250:3000/sessions', session)
-                .then(function (response) {
-                    console.log(response);
+
+            axiosInstance.post('http://192.168.165.250:3000/sessions', session)
+                .then(function (resp) {
+                    console.log(resp);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -52,6 +55,17 @@ export default {
 
 body {
     background-color: #080710;
+}
+
+.login {
+    width: 30%;
+}
+
+.loginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
 }
 
 .background {

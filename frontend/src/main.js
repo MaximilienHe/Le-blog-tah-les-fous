@@ -15,7 +15,10 @@ import Category from './pages/Category.vue'
 
 const routes = [
 	{ path: '/', component: Home, name: 'Home' },
-	{ path: '/category/:id', component: Category, name: 'Article', props: true },
+	{ path: '/category/actualites', component: Category, name: 'Actualite' },
+	{ path: '/category/dossier', component: Category, name: 'Dossier' },
+	{ path: '/category/guide', component: Category, name: 'Guide' },
+	{ path: '/category/test', component: Category, name: 'Test' },
 	{ path: '/articles/:id', component: PostDetail, name: 'Article', props: true },
 	{ path: '/search', component: Search, name: 'Search', props:true },
 	{ path:'/login', component: Login, name: 'Login' },
