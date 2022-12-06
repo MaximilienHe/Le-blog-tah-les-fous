@@ -3,14 +3,14 @@ import { usePiniaStore } from "../stores/postsStore";
 import Header from "../components/Header.vue";
 import CommentItem from "../components/CommentItem.vue";
 import AddComment from "../components/AddComment.vue";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   props: ["id", "postItem"],
   components: {
     Header,
     CommentItem,
-    AddComment
+    AddComment,
   },
   // Properties returned fsrom data() become reactive state
   // and will be exposed on `this`.
@@ -24,19 +24,19 @@ export default {
   // They can be bound as event listeners in templates.
   methods: {
     AddFavorite: function () {
+      var favorite = {
+        article_id: this.post.id
+      }
 
-      // var favorite = {
-      //   this.post.id
-      // }
-
-      axios.post('http://localhost:3000/', article)
+      axios
+        .post("http://localhost:3000/users/favorites", favorite)
         .then(function (response) {
           console.log(response);
         })
         .catch(function (error) {
           console.log(error);
         });
-    }
+    },
   },
   // Lifecycle hooks are called at different stages
   // of a component's lifecycle.
@@ -47,7 +47,8 @@ export default {
     this.post = postStore.getPost(this.$route.params.id);
     console.log(this.post.id);
 
-    let URL = "http://192.168.165.250:3000/articles/" + this.post.id + "/comments";
+    let URL =
+      "http://192.168.165.250:3000/articles/" + this.post.id + "/comments";
     fetch(URL)
       .then((res) => res.json())
       .then((res) => {
@@ -64,22 +65,23 @@ export default {
   <Header />
 
   <body>
-    <div class="banner">
+    <div class="thumbnail">
       <img v-if="post" :src="post.img" />
-    </div>
-    <div class="direction">
-      <h1 v-if="post">{{ post.title }}</h1>
-      <div id="infos">
-        <div v-if="post" class="author">{{ post.author }}</div>
-        <div v-if="post" class="date">{{ post.creation_date }}</div>
+      <div class="caption">
+        <h1 v-if="post">{{ post.title }}</h1>
+        <div id="infos">
+          <div v-if="post" class="author">{{ post.author }}</div>
+          <div v-if="post" class="date">{{ post.creation_date }}</div>
+        </div>
       </div>
     </div>
+    <div class="banner"></div>
+    <div class="direction"></div>
     <div class="fix">
       <button v-on:click="AddFavorite">
         <img src="../assets/bookmark.jpg" id="fixedbutton" />
       </button>
     </div>
-
 
     <div class="content" id="content"></div>
 
@@ -99,6 +101,12 @@ export default {
 </template>
 
 <style scoped>
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 p {
   font-size: 24px;
   width: 1600px;
@@ -110,7 +118,19 @@ p {
   color: black;
 }
 
+.thumbnail {
+  position: relative;
+  display: inline-block;
+}
 
+.caption {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  position: absolute;
+  bottom: 0.5%;
+  left: 0%;
+  color: white;
+  font-weight: bold;
+}
 .Commentaire {
   padding: 0 15vh;
 
@@ -145,6 +165,7 @@ p {
 #infos {
   display: flex;
   flex-direction: row;
+  padding-bottom: 1vh;
 }
 
 h1 {
