@@ -34,6 +34,7 @@ export default {
 
             axiosInstance.post('http://192.168.165.250:3000/sessions', session)
                 .then(function (resp) {
+                    console.log(resp.headers);
                     console.log(resp);
                 })
                 .catch(function (error) {
