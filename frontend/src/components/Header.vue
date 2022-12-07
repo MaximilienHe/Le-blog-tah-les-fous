@@ -46,7 +46,7 @@ export default {
     // Creation of JSON Object + POST in DB when button is clicked
     LogOut: function () {
       console.log("LogOut");
-      let URL = "http://192.168.165.250:3000//sessions/current/";
+      let URL = "http://192.168.165.250:3000/sessions/current/";
       axiosInstance
         .delete(URL)
         .then(function (response) {
