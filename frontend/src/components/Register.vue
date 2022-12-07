@@ -38,7 +38,7 @@ export default {
                 password: document.getElementById("password").value
             }
 
-            axios.post('http://192.168.165.250:3000/users', register)
+            axios.post('http://localhost:3000/users', register)
                 .then(function (response) {
                     console.log(response);
                 })

@@ -14,7 +14,11 @@ const sessionConfig = require('./src/config/session-config')
 
 const app = new Koa();
 
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: false,
+    exposedHeaders: ["set-cookie"]
+}));
 app.use(session(sessionConfig, app));
 app.use(helmet());
 app.use(bodyParser());

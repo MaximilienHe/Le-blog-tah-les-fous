@@ -50,5 +50,5 @@ async function handler(ctx) {
 }
 
 module.exports.push = (router) => {
-    router.post('/favorites', hasRole(["user", "admin"]), validate(schema), validator, handler);
+    router.post('/favorites', validate(schema), validator, handler);
 }

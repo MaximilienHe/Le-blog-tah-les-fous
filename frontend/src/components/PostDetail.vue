@@ -3,7 +3,7 @@ import { usePiniaStore } from "../stores/postsStore";
 import Header from "../components/Header.vue";
 import CommentItem from "../components/CommentItem.vue";
 import AddComment from "../components/AddComment.vue";
-import axios from "axios";
+import axiosInstance from '../axiosImport';
 
 export default {
   props: ["id", "postItem"],
@@ -28,7 +28,7 @@ export default {
         article_id: this.post.id
       }
 
-      axios
+      axiosInstance
         .post("http://localhost:3000/users/favorites", favorite)
         .then(function (response) {
           console.log(response);
@@ -48,7 +48,7 @@ export default {
     console.log(this.post.id);
 
     let URL =
-      "http://192.168.165.250:3000/articles/" + this.post.id + "/comments";
+      "http://localhost:3000/articles/" + this.post.id + "/comments";
     fetch(URL)
       .then((res) => res.json())
       .then((res) => {
