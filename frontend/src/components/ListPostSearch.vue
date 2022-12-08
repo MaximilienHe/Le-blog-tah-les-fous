@@ -1,6 +1,6 @@
 <template>
     <section class="latest">
-        <h3>Derniers articles de la catégorie {{ category }}</h3>
+        <h3>Articles recherchés {{ search }}</h3>
 
         <div v-for="post in posts" class="listPost">
             <PostItem class="item" :post="post" textButton="Lire l'article" :handleClick="this.readArticle" />
@@ -23,6 +23,7 @@ export default {
         return {
             posts: [],
             category: "",
+            search: "",
         };
     },
     // Methods are functions that mutate state and trigger updates.
@@ -33,14 +34,20 @@ export default {
                 name: 'Article',
                 params: { id: data.id },
             });
+
+            const postStore = usePiniaStore();
+            const post = postStore.getPost(data.id);
+
+            localStorage.setItem("post", JSON.stringify(post));
         },
     },
     // Lifecycle hooks are called at different stages
     // of a component's lifecycle.
     // This function will be called when the component is mounted.
     mounted() {
+        this.search = localStorage.getItem("search");
         const posts = usePiniaStore();
-        const URL = "http://localhost:3000/articles?category=" + this.$route.params.id;
+        const URL = "http://localhost:3000/articles?title=" + this.search;
         fetch(URL)
             .then((res) => res.json())
             .then((res) => {
@@ -52,8 +59,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 .item {
     margin-bottom: 50px;
 }

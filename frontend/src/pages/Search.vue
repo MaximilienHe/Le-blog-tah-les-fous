@@ -1,18 +1,27 @@
-<template>
-	<div id="app">
-		<Header />
-	</div>
-</template>
-
 <script>
 import Header from '../components/Header.vue';
+import ListPostSearch from '../components/ListPostSearch.vue';
 export default {
+	props: ["search"],
 	name: 'app',
 	components: {
-		Header
+		Header,
+		ListPostSearch
+	},
+	mounted () {
+		console.log(this.$router.params);
 	}
 }
 </script>
+
+<template>
+	<div id="app">
+		<Header/>
+		<ListPostSearch/>
+	</div>
+</template>
+
+
 
 <style lang="scss" scoped>
 body {

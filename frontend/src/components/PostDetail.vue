@@ -42,9 +42,12 @@ export default {
   // of a component's lifecycle.
   // This function will be called when the component is mounted.
   mounted() {
-    // Store informations of article
-    const postStore = usePiniaStore();
-    this.post = postStore.getPost(this.$route.params.id);
+    // // Store informations of article
+    // const postStore = usePiniaStore();
+    // const post = postStore.getPost(this.$route.params.id);
+
+    // localStorage.setItem("post", JSON.stringify(post));
+    this.post = JSON.parse(localStorage.getItem('post'));
     console.log(this.post.id);
 
     let URL =

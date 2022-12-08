@@ -11,15 +11,7 @@
     <div class="center" id="categories"></div>
 
     <div class="right">
-      <label for="search-bar">
-        <img src="../assets/search-icon.png" class="icon" />
-        <input
-          type="text"
-          id="search-bar"
-          name="search-bar"
-          placeholder="Type to search..."
-        />
-      </label>
+      <Search />
     </div>
 
     <div class="far-right">
@@ -33,9 +25,13 @@
 
 <script>
 import axiosInstance from "../axiosImport";
+import Search from "./Search.vue"
 
 export default {
   name: "header-website",
+  components: {
+    Search,
+  },
   data() {
     return {
       categories: null,

@@ -20,7 +20,7 @@ const routes = [
 	// { path: '/category/guide', component: Category, name: 'Guide' },
 	// { path: '/category/test', component: Category, name: 'Test' },
 	{ path: '/articles/:id', component: PostDetail, name: 'Article', props: true },
-	{ path: '/search/:id', component: Search },
+	{ path: '/search/', component: Search, name: 'Search', props: true },
 	{ path: '/category/:id', component: Category, name : 'Category', },
 	{ path: '/search', component: Search, name: 'Search', props:true },
 	{ path:'/login', component: Login, name: 'Login' },

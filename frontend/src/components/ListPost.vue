@@ -58,6 +58,11 @@ export default {
                 name: 'Article',
                 params: { id: data.id },
             });
+
+            const postStore = usePiniaStore();
+            const post = postStore.getPost(data.id);
+
+            localStorage.setItem("post", JSON.stringify(post));
         },
     },
     // Lifecycle hooks are called at different stages
@@ -76,7 +81,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .item {
     margin-bottom: 50px;
 }
