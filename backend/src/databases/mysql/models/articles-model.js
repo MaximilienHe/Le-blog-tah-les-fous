@@ -59,7 +59,7 @@ module.exports = (Types, sequelize) => {
             },
 
             extract: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 allowNull: false,
             },
 
@@ -70,7 +70,7 @@ module.exports = (Types, sequelize) => {
             },
 
             img: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 allowNull: false,
                 isUrl: true,
             },
@@ -95,7 +95,7 @@ module.exports = (Types, sequelize) => {
             },
 
             content: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 allowNull: false,
             },
 
@@ -105,7 +105,7 @@ module.exports = (Types, sequelize) => {
             },
 
             creation_date: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 allowNull: false,
             }
         },

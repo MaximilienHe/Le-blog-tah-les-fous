@@ -44,7 +44,7 @@ module.exports = (Types, sequelize) => {
             },
 
             email: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 validate: {
                     isEmail: true,
                 },
@@ -59,7 +59,7 @@ module.exports = (Types, sequelize) => {
             },
 
             password: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 allowNull: false,
             },
 
