@@ -20,6 +20,12 @@ import ArticleEditor from './pages/ArticleEditor.vue'
 import Dashboard from './pages/Dashboard.vue'
 import Category from './pages/Category.vue'
 import 404 from './components/404.vue'
+import {
+	createApp
+} from 'vue';
+import {
+	createPinia
+} from 'pinia';
 
 function isNotAuthenticated(to, from, next) {
 	const dataUser = JSON.parse(localStorage.getItem("dataUser"))
