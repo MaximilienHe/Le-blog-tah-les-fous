@@ -24,9 +24,9 @@ const schema = Joi.object({
 async function validator(ctx, next) {
     const { article_id } = ctx.validatedData;
 
-    if (!(await Favorites.isArticleAlreadyFavorite(article_id))) {
+    if ((await Favorites.isArticleAlreadyFavorite(article_id))) {
         ctx.response.status = 409;
-
+        
         return;
     }
 
@@ -50,5 +50,5 @@ async function handler(ctx) {
 }
 
 module.exports.push = (router) => {
-    router.post('/favorites', validate(schema), validator, handler);
+    router.post('/favorites', hasRole(["user", "admin"]), validate(schema), validator, handler);
 }
