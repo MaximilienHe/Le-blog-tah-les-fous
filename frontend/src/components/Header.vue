@@ -3,7 +3,9 @@
     <div class="left">
       <a href="/">
         <div class="Logo">
-          <img src="../assets/logo-maximilienherr.png" height="60px" />
+          <!-- <img src="../assets/logo-maximilienherr.png" height="60px" /> -->
+          <h3>Le Blog</h3>
+          <h2>Tah les fous</h2>
         </div>
       </a>
     </div>
@@ -42,7 +44,7 @@ export default {
     // Creation of JSON Object + POST in DB when button is clicked
     LogOut: function () {
       console.log("LogOut");
-      let URL = "http://192.168.165.250:3000/sessions/current/";
+      let URL = "https://r0301-frameworksweb-production.up.railway.app/sessions/current/";
       axiosInstance
         .delete(URL)
         .then(function (response) {

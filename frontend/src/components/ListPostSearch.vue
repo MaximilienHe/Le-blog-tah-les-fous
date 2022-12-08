@@ -1,6 +1,6 @@
 <template>
     <section class="latest">
-        <h3>Articles recherchés {{ search }}</h3>
+        <h3>Résultats de la recherche :  "{{ search }}"</h3>
 
         <div v-for="post in posts" class="listPost">
             <PostItem class="item" :post="post" textButton="Lire l'article" :handleClick="this.readArticle" />
@@ -13,7 +13,7 @@ import { usePiniaStore } from '../stores/postsStore';
 import PostItem from './PostItem.vue';
 export default {
     props: ['msg'],
-    name: 'latest-articles',
+    name: 'latest-articles-search',
     components: {
         PostItem
     },
@@ -47,7 +47,7 @@ export default {
     mounted() {
         this.search = localStorage.getItem("search");
         const posts = usePiniaStore();
-        const URL = "http://localhost:3000/articles?title=" + this.search;
+        const URL = "https://r0301-frameworksweb-production.up.railway.app/articles?title=" + this.search;
         fetch(URL)
             .then((res) => res.json())
             .then((res) => {

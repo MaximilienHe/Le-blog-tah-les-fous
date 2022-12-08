@@ -39,7 +39,7 @@ import { usePiniaStore } from '../stores/postsStore';
 import PostItem from './PostItem.vue';
 export default {
     props: ['msg'],
-    name: 'latest-articles-category',
+    name: 'latest-articles-favorites',
     components: {
         PostItem
     },
@@ -71,7 +71,7 @@ export default {
     // This function will be called when the component is mounted.
     mounted() {
         const posts = usePiniaStore();
-        const URL = "https://r0301-frameworksweb-production.up.railway.app/articles?category=" + this.$route.params.id;
+        const URL = "https://r0301-frameworksweb-production.up.railway.app/users/favorites";
         fetch(URL)
             .then((res) => res.json())
             .then((res) => {
