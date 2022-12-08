@@ -5,6 +5,8 @@ function hasRole(roles) {
         const tokenAccess = ctx.cookies.get(process.env.SESSION_KEY);
         console.log(tokenAccess);
 
+        console.log(ctx.session);
+
         if (roles.includes(ctx.session.role)) {
             await next();
         } else {
