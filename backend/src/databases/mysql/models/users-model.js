@@ -44,22 +44,20 @@ module.exports = (Types, sequelize) => {
             },
 
             email: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 validate: {
                     isEmail: true,
                 },
                 allowNull: false,
-                unique: true,
             },
 
             username: {
                 type: Types.STRING(40),
                 allowNull: false,
-                unique: true,
             },
 
             password: {
-                type: Types.STRING,
+                type: Types.TEXT,
                 allowNull: false,
             },
 

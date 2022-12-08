@@ -64,7 +64,7 @@ module.exports = (Types, sequelize) => {
             },
 
             slug: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: false,
                 unique: true,
             },
@@ -76,7 +76,7 @@ module.exports = (Types, sequelize) => {
             },
 
             tags: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: true,
                 get() {
                     let splittedTags = this.getDataValue('tags').split(';');
@@ -89,7 +89,7 @@ module.exports = (Types, sequelize) => {
             },
 
             category: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: true,
                 defaultValue: "actualites",
             },
