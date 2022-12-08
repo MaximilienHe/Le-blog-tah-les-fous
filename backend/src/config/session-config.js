@@ -4,6 +4,7 @@ const redisDatabase = require('../databases/redis');
 
 const sessionConfig = {
     key: process.env.SESSION_KEY,
+    saveUninitialized: false,
     maxAge: 86400000,
     autoCommit: true, /** (boolean) automatically commit headers (default true) */
     overwrite: true, /** (boolean) can overwrite or not (default true) */
@@ -12,7 +13,7 @@ const sessionConfig = {
     rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
     renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
     secure: false, /** (boolean) secure cookie*/
-    sameSite: null, /** (string) session cookie sameSite options (default null, don't set it) */
+    sameSite: false, /** (string) session cookie sameSite options (default null, don't set it) */
     store: redisDatabase,
 };
 

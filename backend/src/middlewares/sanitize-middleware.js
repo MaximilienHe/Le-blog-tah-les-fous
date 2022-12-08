@@ -1,11 +1,9 @@
 const xss = require('xss');
 
 function sanitize() {
-    return async (ctx, next) => {
-        console.log("Test");
-
-        await next();
-    }
+    console.log(xss("<script></script><h1><h1><img src=\"pute\"></>"))
 }
+
+sanitize()
 
 module.exports = sanitize;

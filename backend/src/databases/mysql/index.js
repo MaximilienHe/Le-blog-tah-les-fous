@@ -5,12 +5,12 @@ require('dotenv').config()
 const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(
-    process.env.MYSQLDATABASE,
-    process.env.MYSQLUSER,
-    process.env.MYSQLPASSWORD,
+    process.env.MYSQLDATABASE || process.env.MYSQL_LOCAL_DATABASE,
+    process.env.MYSQLUSER || process.env.MYSQL_LOCAL_USER,
+    process.env.MYSQLPASSWORD || process.env.MYSQL_LOCAL_PASSWORD,
     {
-        host: process.env.MYSQLHOST,
-        port: process.env.MYSQLPORT,
+        host: process.env.MYSQLHOST || process.env.MYSQL_LOCAL_HOST,
+        port: process.env.MYSQLPORT || 3306,
         dialect: 'mysql',
         logging: false,
     }

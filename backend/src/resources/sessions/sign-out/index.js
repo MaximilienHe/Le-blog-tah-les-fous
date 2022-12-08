@@ -10,6 +10,7 @@ async function validator(ctx, next) {
 
 async function handler(ctx) {
     ctx.session = null;
+    ctx.response.status = 200;
 }
 
 module.exports.push = (router) => {

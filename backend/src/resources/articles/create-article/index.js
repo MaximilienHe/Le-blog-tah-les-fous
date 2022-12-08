@@ -86,8 +86,6 @@ async function validator(ctx, next) {
 async function handler(ctx) {
     const { title, extract, slug, img, tags, category, content } = ctx.validatedData;
 
-    console.log("COntent : " + content);
-
     Articles.create({
         title: title,
         extract: extract,
@@ -104,5 +102,5 @@ async function handler(ctx) {
 }
 
 module.exports.push = (router) => {
-    router.post('/', validate(schema), validator, handler);
+    router.post('/', hasRole("admin"), validate(schema), validator, handler);
 }
