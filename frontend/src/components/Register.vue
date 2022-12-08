@@ -7,13 +7,13 @@
             <h3>Créer un compte</h3>
 
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" placeholder="Nom d'utilisateur" id="username">
+            <input v-model="username" type="text" placeholder="Nom d'utilisateur" id="username">
 
             <label for="email">Email</label>
-            <input type="text" placeholder="Adresse mail valide" id="email">
+            <input v-model="mail" type="text" placeholder="Adresse mail valide" id="email">
 
             <label for="password">Mot de passe</label>
-            <input type="password" placeholder="Mot de passe" id="password">
+            <input v-model="password" type="password" placeholder="Mot de passe" id="password">
 
             <button class="PushButton" v-on:click="Register">Créer son compte</button>
             <a href="/login">
@@ -28,14 +28,21 @@ import axios from 'axios';
 
 export default {
     name: 'register-default',
+    data () {
+        return {
+            username: '',
+            mail: '',
+            password: ''
+        }
+    },
     methods: {
         // Creattion of JSON Object + POST in DB when button is clicked
         Register: function () {
             console.log("JE PASSE ICI");
             var register = {
-                username: document.getElementById("username").value,
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value
+                username: this.username,
+                email: this.mail,
+                password: this.password
             }
 
             axios.post('https://r0301-frameworksweb-production.up.railway.app/users', register)

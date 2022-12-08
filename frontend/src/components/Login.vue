@@ -7,10 +7,10 @@
             <h3>Se connecter</h3>
 
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" placeholder="Nom d'utilisateur" id="username">
+            <input v-model="username" type="text" placeholder="Nom d'utilisateur" id="username">
 
             <label for="password">Mot de passe</label>
-            <input type="password" placeholder="Mot de passe" id="password">
+            <input v-model="password" type="password" placeholder="Mot de passe" id="password">
 
             <button v-on:click="LogIn">Log In</button>
             <a href="/register">
@@ -25,11 +25,17 @@ import axiosInstance from '../axiosImport';
 
 export default {
     name: 'login-default',
+    data () {
+        return {
+            username: '',
+            password: ''
+        }
+    },
     methods: {
         LogIn: function () {
             var session = {
-                username: document.getElementById("username").value,
-                password: document.getElementById("password").value
+                username: this.username,
+                password: this.password
             }
 
             axiosInstance.post('https://r0301-frameworksweb-production.up.railway.app/sessions', session)
