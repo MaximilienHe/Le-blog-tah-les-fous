@@ -16,7 +16,7 @@ const app = new Koa();
 
 app.use(cors({
     credentials: true,
-    origin: true,
+    origin: false,
 }));
 app.use(session(sessionConfig, app));
 app.use(helmet());
