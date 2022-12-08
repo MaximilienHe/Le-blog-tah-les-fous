@@ -25,7 +25,7 @@ export default {
         content: document.getElementById("contentComment").value,
       }
       console.log(comment);
-      let URL = 'http://localhost:3000/articles/' + this.id + '/comments';
+      let URL = 'https://r0301-frameworksweb-production.up.railway.app/articles/' + this.id + '/comments';
       axiosInstance.post(URL, comment, { withCredentials: true })
         .then(function (response) {
           console.log(response);

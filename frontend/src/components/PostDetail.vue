@@ -3,7 +3,7 @@ import { usePiniaStore } from "../stores/postsStore";
 import Header from "../components/Header.vue";
 import CommentItem from "../components/CommentItem.vue";
 import AddComment from "../components/AddComment.vue";
-import axiosInstance from '../axiosImport';
+import axiosInstance from "../axiosImport";
 
 export default {
   props: ["id", "postItem"],
@@ -18,6 +18,8 @@ export default {
     return {
       post: undefined,
       comments: [],
+      nbLike: 0,
+      orthographeLikes: "",
     };
   },
   // Methods are functions that mutate state and trigger updates.
@@ -25,11 +27,24 @@ export default {
   methods: {
     AddFavorite: function () {
       var favorite = {
-        article_id: this.post.id
-      }
+        article_id: this.post.id,
+      };
 
       axiosInstance
-        .post("http://localhost:3000/users/favorites", favorite)
+        .post("https://r0301-frameworksweb-production.up.railway.app/users/favorites", favorite)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+
+    LikeArticle: function () {
+      const article_id = this.post.id;
+
+      axiosInstance
+        .post("https://r0301-frameworksweb-production.up.railway.app/articles/" + article_id + "/likes")
         .then(function (response) {
           console.log(response);
         })
@@ -47,17 +62,27 @@ export default {
     // const post = postStore.getPost(this.$route.params.id);
 
     // localStorage.setItem("post", JSON.stringify(post));
-    this.post = JSON.parse(localStorage.getItem('post'));
+    this.post = JSON.parse(localStorage.getItem("post"));
     console.log(this.post.id);
 
-    let URL =
-      "http://localhost:3000/articles/" + this.post.id + "/comments";
+    let URL = "https://r0301-frameworksweb-production.up.railway.app/articles/" + this.post.id + "/comments";
     fetch(URL)
       .then((res) => res.json())
       .then((res) => {
         this.comments = res.data;
       });
+    let URL_Likes = "https://r0301-frameworksweb-production.up.railway.app/articles/" + this.post.id + "/likes";
 
+    fetch(URL_Likes)
+      .then((res) => res.json())
+      .then((res) => {
+        this.nbLike = res.data;
+        if (this.nbLike > 1) {
+          this.orthographeLikes = "likes";
+        } else {
+          this.orthographeLikes = "like";
+        }
+      });
     // Charge content of article
     document.getElementById("content").innerHTML = this.post.content;
   },
@@ -82,7 +107,7 @@ export default {
     <div class="direction"></div>
     <div class="fix">
       <button v-on:click="AddFavorite">
-        <img src="../assets/bookmark.jpg" id="fixedbutton" />
+        <img src="../assets/bookmark.jpg" class="fixedbutton" />
       </button>
     </div>
 
@@ -93,6 +118,13 @@ export default {
           data-v-cf937a3e />
         <div id="gradiant"></div>
       </div> -->
+    <section class="Like">
+      <h3 class="CommentTitle">N'hésite pas à liker l'article</h3>
+      <button v-on:click="LikeArticle">
+        <img src="../assets/like.png" class="fixedbutton" />
+      </button>
+      <div class="nbLikes">{{ nbLike }} {{ orthographeLikes }}</div>
+    </section>
     <section class="Commentaire">
       <h3 class="CommentTitle">Commentaires</h3>
       <AddComment v-if="post" :id="post.id" />
@@ -135,6 +167,15 @@ p {
   font-weight: bold;
 }
 .Commentaire {
+  padding: 0 15vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Like {
   padding: 0 15vh;
 
   display: flex;
@@ -224,7 +265,7 @@ html {
   border-radius: 20px;
 }
 
-#fixedbutton {
+.fixedbutton {
   width: 50px;
   height: 50px;
   border-radius: 9px;

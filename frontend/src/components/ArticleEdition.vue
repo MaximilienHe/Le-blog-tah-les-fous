@@ -95,7 +95,7 @@ export default {
         category: selectCategory.options[selectCategory.selectedIndex].text,
         content: this.editor.root.innerHTML,
       }
-      axios.post('http://localhost:3000/articles', article)
+      axios.post('https://r0301-frameworksweb-production.up.railway.app/articles', article)
         .then(function (response) {
           console.log(response);
         })

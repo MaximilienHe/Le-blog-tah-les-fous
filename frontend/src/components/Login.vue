@@ -32,10 +32,10 @@ export default {
                 password: document.getElementById("password").value
             }
 
-            axiosInstance.post('http://localhost:3000/sessions', session)
+            axiosInstance.post('https://r0301-frameworksweb-production.up.railway.app/sessions', session)
                 .then(function (resp) {
-                    console.log(resp.headers);
                     console.log(resp);
+                    localStorage.setItem("dataUser", JSON.stringify(resp.data.data));
                 })
                 .catch(function (error) {
                     console.log(error);

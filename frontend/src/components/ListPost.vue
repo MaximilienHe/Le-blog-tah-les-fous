@@ -70,7 +70,7 @@ export default {
     // This function will be called when the component is mounted.
     mounted() {
         const posts = usePiniaStore();
-        fetch('http://localhost:3000/articles')
+        fetch('https://r0301-frameworksweb-production.up.railway.app/articles')
             .then((res) => res.json())
             .then((res) => {
                 this.posts = res.data;

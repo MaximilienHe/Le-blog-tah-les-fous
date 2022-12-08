@@ -38,7 +38,7 @@ export default {
                 password: document.getElementById("password").value
             }
 
-            axios.post('http://localhost:3000/users', register)
+            axios.post('https://r0301-frameworksweb-production.up.railway.app/users', register)
                 .then(function (response) {
                     console.log(response);
                 })
