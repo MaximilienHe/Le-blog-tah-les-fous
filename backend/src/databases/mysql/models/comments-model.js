@@ -19,7 +19,7 @@ module.exports = (Types, sequelize) => {
             },
 
             content: {
-                type: Types.TEXT,
+                type: Types.STRING,
             },
 
             author: {
@@ -28,7 +28,7 @@ module.exports = (Types, sequelize) => {
             },
 
             creation_date: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: false,
             }
         },

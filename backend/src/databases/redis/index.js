@@ -1,8 +1,9 @@
 'use strict'
 
 const redisStore = require('koa-redis')({
-    host: process.env.REDIS_HOST,
-    port: parseInt(process.env.REDIS_PORT)
+    host: process.env.REDISHOST,
+    password: process.env.REDISPASSWORD,
+    port: process.env.REDISPORT
 })
 
 module.exports = redisStore;

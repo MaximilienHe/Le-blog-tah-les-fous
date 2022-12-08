@@ -59,24 +59,24 @@ module.exports = (Types, sequelize) => {
             },
 
             extract: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: false,
             },
 
             slug: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: false,
                 unique: true,
             },
 
             img: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: false,
                 isUrl: true,
             },
 
             tags: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: true,
                 get() {
                     let splittedTags = this.getDataValue('tags').split(';');
@@ -89,13 +89,13 @@ module.exports = (Types, sequelize) => {
             },
 
             category: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: true,
                 defaultValue: "actualites",
             },
 
             content: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: false,
             },
 
@@ -105,7 +105,7 @@ module.exports = (Types, sequelize) => {
             },
 
             creation_date: {
-                type: Types.TEXT,
+                type: Types.STRING,
                 allowNull: false,
             }
         },
