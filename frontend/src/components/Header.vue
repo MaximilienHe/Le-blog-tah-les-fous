@@ -27,7 +27,7 @@
 
 <script>
 import axiosInstance from "../axiosImport";
-import Search from "./Search.vue"
+import Search from "./Search.vue";
 
 export default {
   name: "header-website",
@@ -44,12 +44,14 @@ export default {
     // Creation of JSON Object + POST in DB when button is clicked
     LogOut: function () {
       console.log("LogOut");
-      let URL = "https://r0301-frameworksweb-production.up.railway.app/sessions/current/";
+      let URL =
+        "https://r0301-frameworksweb-production.up.railway.app/sessions/current/";
       axiosInstance
         .delete(URL)
         .then(function (response) {
           console.log(response);
-		  window.location.reload()
+          localStorage.removeItem('dataUser');
+          window.location.reload();
         })
         .catch(function (error) {
           console.log(error);
