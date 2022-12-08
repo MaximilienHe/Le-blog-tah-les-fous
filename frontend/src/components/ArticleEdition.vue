@@ -1,16 +1,16 @@
 <template>
   <form @submit.prevent="submit">
-    <input type="text" class="form-control-LargeInput" id="title" placeholder="Titre de l'article" />
-    <textarea type="text" class="form-control-LargeInput" id="extrait" placeholder="Extrait de l'article" />
+    <input v-model="articleTitle" type="text" class="form-control-LargeInput" id="title" placeholder="Titre de l'article" />
+    <textarea v-model="articleExtract" type="text" class="form-control-LargeInput" id="extrait" placeholder="Extrait de l'article" />
 
     <div class="ArticleInfos">
       <select id="Category">
         <option value="" selected disabled hidden>Catégorie de l'article</option>
       </select>
-      <input type="text" class="form-control-smallInput" id="img" placeholder="Miniature de l'article (URL)" />
-      <input type="text" class="form-control-smallInput" id="slug" placeholder="Slug de l'article" />
+      <input v-model="articleImg" type="text" class="form-control-smallInput" id="img" placeholder="Miniature de l'article (URL)" />
+      <input v-model="articleSlug" type="text" class="form-control-smallInput" id="slug" placeholder="Slug de l'article" />
     </div>
-    <input type="text" class="form-control-LargeInput" id="tags"
+    <input v-model="articleTags" type="text" class="form-control-LargeInput" id="tags"
       placeholder="Tags de l'article, séparés par un ; (e.g : samsung; xiaomi; apple)" />
   </form>
   <div ref="editor" class="quillEditor"></div>
@@ -40,6 +40,12 @@ export default {
       editor: null,
       authors: null,
       categories: null,
+      articleTitle: "",
+      articleExtract: "",
+      articleSlug: "",
+      articleImg: "",
+      articleTags: "",
+      articleCategory: null,
     };
   },
   mounted() {
@@ -85,16 +91,17 @@ export default {
     // Creattion of JSON Object + POST in DB when button is clicked
     SaveArticle: function () {
       var selectCategory = document.getElementById("Category");
-
+      
       var article = {
-        title: document.getElementById("title").value,
-        extract: document.getElementById("extrait").value,
-        slug: document.getElementById("slug").value,
-        img: document.getElementById("img").value,
-        tags: document.getElementById("tags").value,
+        title: this.articleTitle,
+        extract: this.articleExtract,
+        slug: this.articleSlug,
+        img: this.articleImg,
+        tags: this.articleTags,
         category: selectCategory.options[selectCategory.selectedIndex].text,
         content: this.editor.root.innerHTML,
       }
+      console.log(article);
       axios.post('https://r0301-frameworksweb-production.up.railway.app/articles', article)
         .then(function (response) {
           console.log(response);

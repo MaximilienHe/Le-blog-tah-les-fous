@@ -5,23 +5,18 @@ export default {
     data() {
         return {
             categories: null,
+            searchText: '',
         };
     },
 
     methods: {
         onEnter: function () {
-            console.log(document.getElementById('search-bar').value);
+            console.log(this.searchText);
             this.$router.push({
                 name: 'Search'
             });
 
-            localStorage.setItem('search', document.getElementById('search-bar').value);
-            // this.$router.push({
-            //     path: '/search/' + document.getElementById('search-bar').value,
-            //     components: {
-            //         header: () => import('./Header.vue'),
-            //     }
-            // });
+            localStorage.setItem('search', this.searchText);
         },
     },
 
@@ -34,7 +29,7 @@ export default {
 <template>
     <label for="search-bar">
         <img src="../assets/search-icon.png" class="icon" />
-        <input v-on:keyup.enter="onEnter" type="text" id="search-bar" name="search-bar" placeholder="Type to search..." />
+        <input v-model="searchText" v-on:keyup.enter="onEnter" type="text" id="search-bar" name="search-bar" placeholder="Type to search..." />
     </label>
 </template>
 

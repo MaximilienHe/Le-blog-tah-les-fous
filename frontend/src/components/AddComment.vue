@@ -1,5 +1,5 @@
 <template>
-  <textarea type="text" class="form-control-LargeInput" id="contentComment" placeholder="Ecrivez votre commentaire ..." />
+  <textarea v-model="commentText" type="text" class="form-control-LargeInput"  placeholder="Ecrivez votre commentaire ..." />
   <div class="pushArticle">
     <button class="PushButton" v-on:click="SaveComment">Publier le commentaire</button>
     <p id="Errors"></p>
@@ -16,13 +16,17 @@ export default {
   mounted() {
     var _this = this;
   },
-
+  data() {
+    return {
+      commentText: "",
+    };
+  },
   methods: {
     // Creation of JSON Object + POST in DB when button is clicked
     SaveComment: function () {
       var comment = {
         id: this.id,
-        content: document.getElementById("contentComment").value,
+        content: this.commentText,
       }
       console.log(comment);
       let URL = 'https://r0301-frameworksweb-production.up.railway.app/articles/' + this.id + '/comments';
