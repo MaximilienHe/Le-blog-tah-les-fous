@@ -49,13 +49,11 @@ module.exports = (Types, sequelize) => {
                     isEmail: true,
                 },
                 allowNull: false,
-                unique: true,
             },
 
             username: {
                 type: Types.STRING(40),
                 allowNull: false,
-                unique: true,
             },
 
             password: {

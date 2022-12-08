@@ -8,6 +8,8 @@ const schema = Joi.object({
         .trim()
         .required()
         .alphanum()
+        .min(4)
+        .max(40)
         .messages({
             'any.required': 'Username is required',
             'string.empty': 'Username is required'
