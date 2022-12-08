@@ -4,7 +4,6 @@ const redisDatabase = require('../databases/redis');
 
 const sessionConfig = {
     key: process.env.SESSION_KEY,
-    saveUninitialized: false,
     maxAge: 86400000,
     autoCommit: true, /** (boolean) automatically commit headers (default true) */
     overwrite: true, /** (boolean) can overwrite or not (default true) */

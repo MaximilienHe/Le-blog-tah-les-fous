@@ -50,6 +50,8 @@ async function handler(ctx) {
         ctx.session.id = id;
         ctx.session.username = username;
         ctx.session.role = role;
+
+        console.log("User logegd in !");
     }
 
     ctx.response.status = 200;
