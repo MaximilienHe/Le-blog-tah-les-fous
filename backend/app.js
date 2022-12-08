@@ -14,6 +14,8 @@ const sessionConfig = require('./src/config/session-config')
 
 const app = new Koa();
 
+app.set('trust proxy', 1);
+
 app.use(cors({
     credentials: true,
     origin: false,
