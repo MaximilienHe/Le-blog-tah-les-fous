@@ -1,32 +1,6 @@
 <template>
     <section class="latest">
         <h3>Derniers articles</h3>
-        <!-- <div class="posts">
-            <div class="post">
-                <div class="image" :style="{ backgroundImage: `url('')` }"></div>
-                <h4>Plan Ahead</h4>
-            </div>
-            <div class="post col-2 row-2">
-                <div class="image" :style="{ backgroundImage: `url('')` }"></div>
-                <h4>VueJS Fundamentals</h4>
-            </div>
-            <div class="post row-2">
-                <div class="image" :style="{ backgroundImage: `url('')}')` }"></div>
-                <h4>Everything wrong with AI</h4>
-            </div>
-            <div class="post row-2">
-                <div class="image" :style="{ backgroundImage: `url('')}')` }"></div>
-                <h4>#100DaysOfCode</h4>
-            </div>
-            <div class="post">
-                <div class="image" :style="{ backgroundImage: `url('')}')` }"></div>
-                <h4>Node Package Manager</h4>
-            </div>
-            <div class="post col-2">
-                <div class="image" :style="{ backgroundImage: `url('')}')` }"></div>
-                <h4>Learn to take a break</h4>
-            </div>
-        </div> -->
 
         <div v-for="post in posts" class="listPost">
             <PostItem class="item" :post="post" textButton="Lire l'article" :handleClick="this.readArticle" />

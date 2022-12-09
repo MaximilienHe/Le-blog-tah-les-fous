@@ -17,10 +17,18 @@
     </div>
 
     <div class="far-right">
-      <a href="/login"><img src="../assets/user-icon.png" class="icon" /></a>
-      <button class="PushButton" v-on:click="LogOut">
-        <img src="../assets/logout.png" class="icon" />
-      </button>
+      <a v-if="isConnected" href="/favorites"
+        ><img v-if="isConnected" src="../assets/bookmarkEntire.jpg" class="icon"
+      /></a>
+      <a v-if="!isConnected" href="/login"
+        ><img v-if="!isConnected" src="../assets/user-icon.png" class="icon"
+      /></a>
+      <a v-if="isConnected" href="" class="PushButton" v-on:click="LogOut">
+        <img v-if="isConnected" src="../assets/logout.png" class="icon" />
+      </a>
+      <a v-if="isAdmin" href="/dashboard" class="PushButton" >
+        <img v-if="isConnected" src="../assets/dashboard.png" class="icon" />
+      </a>
     </div>
   </header>
 </template>
@@ -37,6 +45,8 @@ export default {
   data() {
     return {
       categories: null,
+      isConnected: false,
+      isAdmin: false,
     };
   },
 
@@ -44,13 +54,13 @@ export default {
     // Creation of JSON Object + POST in DB when button is clicked
     LogOut: function () {
       console.log("LogOut");
+      localStorage.removeItem("dataUser");
       let URL =
         "https://r0301-frameworksweb-production.up.railway.app/sessions/current/";
       axiosInstance
         .delete(URL)
         .then(function (response) {
           console.log(response);
-          localStorage.removeItem('dataUser');
           window.location.reload();
         })
         .catch(function (error) {
@@ -60,6 +70,20 @@ export default {
   },
 
   mounted() {
+    if (localStorage.getItem("dataUser") !== null) {
+      this.isConnected = JSON.parse(
+        localStorage.getItem("dataUser")
+      ).is_authenticated;
+      const role = JSON.parse(localStorage.getItem("dataUser")).role;
+      if (role === "admin") {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
+    } else {
+      this.isConnected = false;
+      this.isAdmin = false;
+    }
     fetch("../src/assets/categories.json")
       .then((res) => res.json())
       .then((res) => {

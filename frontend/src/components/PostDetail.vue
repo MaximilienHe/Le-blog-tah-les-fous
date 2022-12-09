@@ -20,6 +20,7 @@ export default {
       comments: [],
       nbLike: 0,
       orthographeLikes: "",
+      isConnected: false,
     };
   },
   // Methods are functions that mutate state and trigger updates.
@@ -57,6 +58,15 @@ export default {
   // of a component's lifecycle.
   // This function will be called when the component is mounted.
   mounted() {
+    // get status of user
+    if (localStorage.getItem("dataUser") !== null) {
+      this.isConnected = JSON.parse(
+        localStorage.getItem("dataUser")
+      ).is_authenticated;
+    } else {
+      this.isConnected = false;
+    }
+
     // // Store informations of article
     // const postStore = usePiniaStore();
     // const post = postStore.getPost(this.$route.params.id);
@@ -104,12 +114,14 @@ export default {
       </div>
     </div>
     <div class="banner"></div>
-    <div class="direction"></div>
-    <div class="fix">
+    <div  class="direction"></div>
+
+    <div v-if="isConnected" class="fix">
       <button v-on:click="AddFavorite">
         <img src="../assets/bookmark.jpg" class="fixedbutton" />
       </button>
     </div>
+
 
     <div class="content" id="content"></div>
 
@@ -120,14 +132,16 @@ export default {
       </div> -->
     <section class="Like">
       <h3 class="CommentTitle">N'hésite pas à liker l'article</h3>
-      <button v-on:click="LikeArticle">
-        <img src="../assets/like.png" class="fixedbutton" />
+      <div v-if="!isConnected"><i>Connectez-vous pour liker cet article</i></div>
+      <button v-if="isConnected" v-on:click="LikeArticle">
+        <img v-if="isConnected" src="../assets/like.png" class="fixedbutton" />
       </button>
-      <div class="nbLikes">{{ nbLike }} {{ orthographeLikes }}</div>
+      <div v-if="isConnected" class="nbLikes">{{ nbLike }} {{ orthographeLikes }}</div>
     </section>
     <section class="Commentaire">
       <h3 class="CommentTitle">Commentaires</h3>
-      <AddComment v-if="post" :id="post.id" />
+      <AddComment v-if="(post && isConnected)" :id="post.id" />
+      <div v-if="!isConnected"><i>Connectez-vous pour commenter cet article</i></div>
       <div v-for="comment in comments" class="listComments">
         <CommentItem class="item" :comment="comment" :id="post.id" />
       </div>

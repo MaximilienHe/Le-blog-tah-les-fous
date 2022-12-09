@@ -19,13 +19,29 @@ import Home from './pages/Home.vue'
 import ArticleEditor from './pages/ArticleEditor.vue'
 import Dashboard from './pages/Dashboard.vue'
 import Category from './pages/Category.vue'
-import Page404 from './components/404.vue'
+import favorites from './pages/favorites.vue'
+
+
+function isAuthenticated(to, from, next) {
+	if (localStorage.getItem("dataUser") === null) {
+		next('/');
+	} else {
+		const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+
+		// Si on essaye d'accéder à la route alors que l'on est pas connecté, on revient à la home page
+		if (dataUser.is_authenticated == true) {
+			next(); // allow to enter route
+		} else {
+			next('/'); // go to Home;
+		}
+	}
+}
 
 function isNotAuthenticated(to, from, next) {
 	if (localStorage.getItem("dataUser") === null) {
-		next();
+		next('/');
 	} else {
-		const dataUser = JSON.parse(localStorage.getItem("dataUser"))
+		const dataUser = JSON.parse(localStorage.getItem("dataUser"));
 
 		// Si on essaye d'accéder à la route alors que l'on est pas connecté, on revient à la home page
 		if (dataUser.is_authenticated == false) {
@@ -40,7 +56,7 @@ function isAdmin(to, from, next) {
 	if (localStorage.getItem("dataUser") === null) {
 		next('/');
 	} else {
-		const dataUser = JSON.parse(localStorage.getItem("dataUser"))
+		const dataUser = JSON.parse(localStorage.getItem("dataUser"));
 
 		if (dataUser.role == "admin") {
 			next(); // allow to enter route
@@ -107,10 +123,12 @@ const routes = [{
 		name: 'Dashboard'
 	},
 	{
-		path: '/404',
-		component: Page404,
-		name: '404'
-	},
+		path: '/favorites',
+		component: favorites,
+		beforeEnter: isAuthenticated,
+		name: 'Favorites'
+	}
+
 
 ];
 
