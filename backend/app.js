@@ -17,6 +17,7 @@ const app = new Koa();
 app.use(cors({
     credentials: true,
     origin: false,
+    exposedHeaders: ["set-cookie"]
 }));
 app.use(session(sessionConfig, app));
 app.use(helmet());
@@ -26,7 +27,6 @@ app.use(userRoutes);
 app.use(sessionsRoutes);
 app.use(articlesRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log("RESTful API listening on port " + PORT);
+app.listen(3000, () => {
+    console.log("RESTful API listening on port 3000...");
 })
