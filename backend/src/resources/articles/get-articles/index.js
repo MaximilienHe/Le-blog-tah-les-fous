@@ -8,21 +8,18 @@ const Articles = require('../../../databases/mysql').models.Articles;
 const schema = Joi.object({
     category: Joi.string()
         .trim()
-        .lowercase()
         .messages({
             'string.empty': 'Category is empty',
         }),
 
     slug: Joi.string()
         .trim()
-        .lowercase()
         .messages({
             'string.empty': 'Slug is empty',
         }),
 
     title: Joi.string()
         .trim()
-        .lowercase()
         .messages({
             'string.empty': 'Title is empty',
         })
@@ -47,9 +44,15 @@ async function filter(ctx, next) {
             let isValid = true;
             for (let key in filters) {
                 if (key == "title") {
-                    isValid = isValid && article[key].includes(filters[key]);
+                    const articleTitleToUpper = article[key].toUpperCase();
+                    const titleParam = filters[key].toUpperCase();
+
+                    isValid = isValid && articleTitleToUpper.includes(titleParam);
                 } else {
-                    isValid = isValid && article[key] == filters[key];
+                    const articleKey = article[key].toUpperCase();
+                    const filterParam = filters[key].toUpperCase();
+
+                    isValid = isValid && articleKey == filtersParam;
                 }
             }
             return isValid;
