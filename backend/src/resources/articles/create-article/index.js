@@ -94,7 +94,7 @@ async function handler(ctx) {
         tags: tags,
         category: category,
         content: content,
-        author: "Maximilien",
+        author: ctx.session.username,
         creation_date: new Date().toLocaleDateString()
     });
 
