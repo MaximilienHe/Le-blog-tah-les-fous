@@ -52,7 +52,7 @@ async function filter(ctx, next) {
                     const articleKey = article[key].toUpperCase();
                     const filterParam = filters[key].toUpperCase();
 
-                    isValid = isValid && articleKey == filtersParam;
+                    isValid = isValid && articleKey == filterParam;
                 }
             }
             return isValid;
