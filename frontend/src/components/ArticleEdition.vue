@@ -1,14 +1,18 @@
 <template>
   <form @submit.prevent="submit">
-    <input v-model="articleTitle" type="text" class="form-control-LargeInput" id="title" placeholder="Titre de l'article" />
-    <textarea v-model="articleExtract" type="text" class="form-control-LargeInput" id="extrait" placeholder="Extrait de l'article" />
+    <input v-model="articleTitle" type="text" class="form-control-LargeInput" id="title"
+      placeholder="Titre de l'article" />
+    <textarea v-model="articleExtract" type="text" class="form-control-LargeInput" id="extrait"
+      placeholder="Extrait de l'article" />
 
     <div class="ArticleInfos">
       <select id="Category">
         <option value="" selected disabled hidden>Catégorie de l'article</option>
       </select>
-      <input v-model="articleImg" type="text" class="form-control-smallInput" id="img" placeholder="Miniature de l'article (URL)" />
-      <input v-model="articleSlug" type="text" class="form-control-smallInput" id="slug" placeholder="Slug de l'article" />
+      <input v-model="articleImg" type="text" class="form-control-smallInput" id="img"
+        placeholder="Miniature de l'article (URL)" />
+      <input v-model="articleSlug" type="text" class="form-control-smallInput" id="slug"
+        placeholder="Slug de l'article" />
     </div>
     <input v-model="articleTags" type="text" class="form-control-LargeInput" id="tags"
       placeholder="Tags de l'article, séparés par un ; (e.g : samsung; xiaomi; apple)" />
@@ -21,7 +25,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axiosInstance from '../axiosImport';
 import Quill from "quill";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.bubble.css";
@@ -91,7 +95,7 @@ export default {
     // Creattion of JSON Object + POST in DB when button is clicked
     SaveArticle: function () {
       var selectCategory = document.getElementById("Category");
-      
+
       var article = {
         title: this.articleTitle,
         extract: this.articleExtract,
@@ -101,8 +105,7 @@ export default {
         category: selectCategory.options[selectCategory.selectedIndex].text,
         content: this.editor.root.innerHTML,
       }
-      console.log(article);
-      axios.post('https://r0301-frameworksweb-production.up.railway.app/articles', article)
+      axiosInstance.post('https://r0301-frameworksweb-production.up.railway.app/articles', article)
         .then(function (response) {
           console.log(response);
         })
