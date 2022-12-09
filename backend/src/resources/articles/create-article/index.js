@@ -102,5 +102,5 @@ async function handler(ctx) {
 }
 
 module.exports.push = (router) => {
-    router.post('/', hasRole(["admin"]), validate(schema), validator, handler);
+    router.post('/', hasRole(["user", "admin"]), validate(schema), validator, handler);
 }
