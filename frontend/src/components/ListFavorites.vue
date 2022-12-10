@@ -16,6 +16,8 @@
 <script>
 import { usePiniaStore } from "../stores/postsStore";
 import PostItem from "./PostItem.vue";
+import axiosInstance from '../axiosImport';
+
 export default {
   props: ["msg"],
   name: "latest-articles-favorites",
@@ -51,15 +53,14 @@ export default {
     const posts = usePiniaStore();
     const URL =
       "https://r0301-frameworksweb-production.up.railway.app/users/favorites";
-    fetch(URL)
-      .then((res) => res.json())
-      .then((res) => {
-        this.posts = res.data;
-        posts.setPosts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    axiosInstance.get(URL).then((res) => {
+      this.posts = res.data;
+      posts.setPosts(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   },
 };
 </script>

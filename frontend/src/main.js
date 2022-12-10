@@ -39,7 +39,7 @@ function isAuthenticated(to, from, next) {
 
 function isNotAuthenticated(to, from, next) {
 	if (localStorage.getItem("dataUser") === null) {
-		next('/');
+		next();
 	} else {
 		const dataUser = JSON.parse(localStorage.getItem("dataUser"));
 
