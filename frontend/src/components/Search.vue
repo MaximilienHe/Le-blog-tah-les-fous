@@ -11,12 +11,12 @@ export default {
   methods: {
     onEnter: function () {
       console.log(this.searchText);
+      localStorage.setItem("search", this.searchText);
+      window.location.reload();
       this.$router.push({
         name: "Search",
       });
-
-      localStorage.setItem("search", this.searchText);
-      window.location.reload();
+      
     },
   },
 
