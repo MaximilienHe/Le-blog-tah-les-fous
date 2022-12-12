@@ -14,6 +14,7 @@ export default {
   },
   // Properties returned fsrom data() become reactive state
   // and will be exposed on `this`.
+
   data() {
     return {
       post: undefined,
@@ -151,6 +152,8 @@ export default {
 
 <style scoped>
 body {
+  padding-left: 10%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,8 +206,8 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: left;
-  padding-left: 20vh;
-  padding-right: 20vh;
+  padding-left: 30vh;
+  padding-right: 30vh;
 }
 
 .banner {
