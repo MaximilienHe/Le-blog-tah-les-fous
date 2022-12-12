@@ -29,6 +29,7 @@ export default {
         content: this.commentText,
       }
       console.log(comment);
+      window.location.reload();
       let URL = 'https://r0301-frameworksweb-production.up.railway.app/articles/' + this.id + '/comments';
       axiosInstance.post(URL, comment, { withCredentials: true })
         .then(function (response) {

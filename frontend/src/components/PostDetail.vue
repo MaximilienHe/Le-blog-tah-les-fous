@@ -48,6 +48,7 @@ export default {
       axiosInstance
         .post("https://r0301-frameworksweb-production.up.railway.app/articles/" + article_id + "/likes")
         .then(function (response) {
+          window.location.reload();
           console.log(response);
         })
         .catch(function (error) {
