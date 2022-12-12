@@ -2,7 +2,7 @@
   <section class="latest">
     <h3>Résultats de la recherche : "{{ search }}"</h3>
 
-    <div v-for="post in posts" class="listPost">
+    <div v-for="post in posts.slice().reverse()" class="listPost">
       <PostItem
         class="item"
         :post="post"

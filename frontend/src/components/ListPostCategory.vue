@@ -2,7 +2,7 @@
     <section class="latest">
         <h3>Derniers articles de la catégorie {{ this.$route.params.id }}</h3>
 
-        <div v-for="post in posts" class="listPost">
+        <div v-for="post in posts.slice().reverse()" class="listPost">
             <PostItem class="item" :post="post" textButton="Lire l'article" :handleClick="this.readArticle" />
         </div>
     </section>
