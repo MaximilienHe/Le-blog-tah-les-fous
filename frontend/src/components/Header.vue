@@ -17,16 +17,13 @@
     </div>
 
     <div class="far-right">
-      <a v-if="isConnected" href="/favorites"
-        ><img v-if="isConnected" src="../assets/bookmarkEntire.jpg" class="icon"
-      /></a>
-      <a v-if="!isConnected" href="/login"
-        ><img v-if="!isConnected" src="../assets/user-icon.png" class="icon"
-      /></a>
+      <a v-if="isConnected" href="/favorites"><img v-if="isConnected" src="../assets/bookmarkEntire.jpg"
+          class="icon" /></a>
+      <a v-if="!isConnected" href="/login"><img v-if="!isConnected" src="../assets/user-icon.png" class="icon" /></a>
       <a v-if="isConnected" href="" class="PushButton" v-on:click="LogOut">
         <img v-if="isConnected" src="../assets/logout.png" class="icon" />
       </a>
-      <a v-if="isAdmin" href="/dashboard" class="PushButton" >
+      <a v-if="isAdmin" href="/dashboard" class="PushButton">
         <img v-if="isConnected" src="../assets/dashboard.png" class="icon" />
       </a>
     </div>
@@ -36,6 +33,7 @@
 <script>
 import axiosInstance from "../axiosImport";
 import Search from "./Search.vue";
+import catJson from '../assets/categories.json'
 
 export default {
   name: "header-website",
@@ -84,24 +82,19 @@ export default {
       this.isConnected = false;
       this.isAdmin = false;
     }
-    fetch("../src/assets/categories.json")
-      .then((res) => res.json())
-      .then((res) => {
-        this.categories = res.categories;
 
-        document.getElementById("categories").innerHTML = "";
-      })
-      .then((res) => {
-        this.categories.forEach((category) => {
-          // Creation of HTML for categories
-          const linkCat = document.createElement("a");
-          linkCat.href = "/category/" + category.name;
-          const h3Category = document.createElement("h3");
-          linkCat.appendChild(h3Category);
-          h3Category.innerHTML = category.name;
-          document.getElementById("categories").appendChild(linkCat);
-        });
-      });
+    this.categories = catJson.categories;
+
+    document.getElementById("categories").innerHTML = "";
+    this.categories.forEach((category) => {
+      // Creation of HTML for categories
+      const linkCat = document.createElement("a");
+      linkCat.href = "/category/" + category.name;
+      const h3Category = document.createElement("h3");
+      linkCat.appendChild(h3Category);
+      h3Category.innerHTML = category.name;
+      document.getElementById("categories").appendChild(linkCat);
+    });
   },
 };
 </script>

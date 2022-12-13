@@ -9,7 +9,7 @@ export default {
 		ListPostSearch
 	},
 	mounted () {
-		console.log(this.$router.params);
+		console.log(this.$route.params);
 	}
 }
 </script>

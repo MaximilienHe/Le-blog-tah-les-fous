@@ -18,7 +18,7 @@ import { usePiniaStore } from "../stores/postsStore";
 import PostItem from "./PostItem.vue";
 
 export default {
-  props: ["msg"],
+  props: ["msg", "search"],
   name: "latest-articles-search",
   components: {
     PostItem,
@@ -51,7 +51,7 @@ export default {
   // of a component's lifecycle.
   // This function will be called when the component is mounted.
   mounted() {
-    this.search = localStorage.getItem("search");
+    this.search = this.$route.params.search;
     const posts = usePiniaStore();
     const URL =
       "https://r0301-frameworksweb-production.up.railway.app/articles?title=" +

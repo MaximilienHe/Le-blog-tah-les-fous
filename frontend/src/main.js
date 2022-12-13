@@ -93,7 +93,7 @@ const routes = [{
 		name: 'Category',
 	},
 	{
-		path: '/search',
+		path: '/search/:search',
 		component: Search,
 		name: 'Search',
 		props: true
@@ -127,6 +127,10 @@ const routes = [{
 		component: favorites,
 		beforeEnter: isAuthenticated,
 		name: 'Favorites'
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		redirect: '/'
 	}
 
 
