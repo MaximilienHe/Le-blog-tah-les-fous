@@ -9,7 +9,7 @@ const Favorites = require('../../../../databases/mysql').models.Favorites;
 const hasRole = require('../../../../middlewares/permissions-middleware');
 
 async function validator(ctx, next) {
-    const favoritesArticles = await Favorites.findOne({
+    const favoritesArticles = await Favorites.findAll({
         where: {
             UserId: ctx.session.id
         },

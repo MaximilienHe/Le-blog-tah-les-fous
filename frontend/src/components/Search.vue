@@ -16,7 +16,6 @@ export default {
         name: "Search",
       });
       window.location.reload();
-      
     },
   },
 
