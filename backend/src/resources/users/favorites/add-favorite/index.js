@@ -24,13 +24,17 @@ const schema = Joi.object({
 async function validator(ctx, next) {
     const { article_id } = ctx.validatedData;
 
-    if ((await Favorites.isArticleAlreadyFavorite(article_id))) {
+    console.log("Id : " + ctx.session.id)
+
+    if (await Favorites.isArticleAlreadyFavorite(article_id)) {
         ctx.response.status = 409;
-        
+
         return;
     }
 
     const isArticleExists = await Articles.findByPk(article_id);
+    console.log("Article Exists : " + isArticleExists);
+
     if (isArticleExists) {
         await next();
     } else {
