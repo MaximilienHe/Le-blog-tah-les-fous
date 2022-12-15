@@ -16,6 +16,7 @@
 <script>
 import { usePiniaStore } from "../stores/postsStore";
 import PostItem from "./PostItem.vue";
+import axiosInstance from '../axiosImport';
 
 export default {
   props: ["msg", "search"],

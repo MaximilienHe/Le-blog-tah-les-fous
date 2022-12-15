@@ -1,8 +1,8 @@
 <template>
   <section class="latest">
-    <h3>Articles mis en favoris</h3>
+    <h3>Derniers articles</h3>
 
-    <div v-for="post in posts" class="listPost">
+    <div v-for="post in posts.slice().reverse()" class="listPost">
       <PostItem
         class="item"
         :post="post"
@@ -16,11 +16,11 @@
 <script>
 import { usePiniaStore } from "../stores/postsStore";
 import PostItem from "./PostItem.vue";
-import axiosInstance from '../axiosImport';
+import axiosInstance from "../axiosImport";
 
 export default {
   props: ["msg"],
-  name: "latest-articles-favorites",
+  name: "latest-articles",
   components: {
     PostItem,
   },
@@ -51,16 +51,23 @@ export default {
   // This function will be called when the component is mounted.
   mounted() {
     const posts = usePiniaStore();
-    const URL =
-      "https://r0301-frameworksweb-production.up.railway.app/users/favorites";
-
-    axiosInstance.get(URL).then((res) => {
-      this.posts = res.data;
-      posts.setPosts(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    // fetch(
+    //   "https://r0301-frameworksweb-production.up.railway.app/users/favorites"
+    // )
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     this.posts = res.data;
+    //     posts.setPosts(res.data);
+    //   });
+    axiosInstance
+      .get(
+        "https://r0301-frameworksweb-production.up.railway.app/users/favorites"
+      )
+      .then((res) => {
+        console.log(res.data.data);
+        this.posts = res.data.data;
+        posts.setPosts(res.data.data);
+      });
   },
 };
 </script>
