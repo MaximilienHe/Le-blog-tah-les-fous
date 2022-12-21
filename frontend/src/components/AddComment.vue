@@ -29,15 +29,15 @@ export default {
         content: this.commentText,
       }
       console.log(comment);
-      window.location.reload();
       let URL = 'https://r0301-frameworksweb-production.up.railway.app/articles/' + this.id + '/comments';
       axiosInstance.post(URL, comment, { withCredentials: true })
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      .then(function (response) {
+        console.log(response);
+        window.location.reload();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     },
   },
 };

@@ -92,7 +92,7 @@ export default {
       linkCat.href = "/category/" + category.name;
       const h3Category = document.createElement("h3");
       linkCat.appendChild(h3Category);
-      h3Category.innerHTML = category.name;
+      h3Category.innerHTML = category.name.toUpperCase();
       document.getElementById("categories").appendChild(linkCat);
     });
   },

@@ -137,7 +137,7 @@ export default {
     }
 
     img {
-      width: 45%;
+      max-width: 45%;
       aspect-ratio: 16/9;
       object-fit: contain;
     }
