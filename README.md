@@ -1,1 +1,3 @@
-# R03.01 - Développement-Web
+# Le Blog tah les fous
+
+Readme en cours de construction
